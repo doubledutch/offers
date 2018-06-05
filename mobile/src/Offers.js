@@ -125,7 +125,7 @@ const s = ReactNative.StyleSheet.create({
   dimensionStyle : {
     flexDirection: "row", 
     flexGrow: 1,
-    aspectRatio: 2.0165,
+    aspectRatio: 1.6,
     justifyContent: 'center',
     resizeMode: 'cover',
     alignItems: 'flex-end'
