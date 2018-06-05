@@ -19,9 +19,9 @@ import ReactNative, {
   Platform, Text, TextInput, View, ScrollView, StyleSheet
 } from 'react-native'
 import client, { TitleBar } from '@doubledutch/rn-client'
-import Offers from './Offers'
+import Offers from './offers'
 import FirebaseConnector from '@doubledutch/firebase-connector'
-const fbc = FirebaseConnector(client, 'offers')
+const fbc = FirebaseConnector(client, 'Offers')
 fbc.initializeAppWithSimpleBackend()
 
 export default class HomeView extends Component {
@@ -32,7 +32,8 @@ export default class HomeView extends Component {
     }
     this.signin = fbc.signin()
     .then(user => this.user = user)
-    .catch(error => {alert("Please try reloading page to connect to the database")})
+    
+    this.signin.catch(err => console.error(err))
   }
 
   componentDidMount() {
@@ -62,7 +63,7 @@ export default class HomeView extends Component {
       <View style={{flex: 1}}>
         <TitleBar title="Offers" client={client} signin={this.signin} />
         <ScrollView style={styles.container}>
-          { this.state.componentConfigs.map(this.getComponent) }
+          { this.state.componentConfigs ? this.state.componentConfigs.map(this.getComponent) : <Text>Loading...</Text> }
         </ScrollView>
       </View>
     )
