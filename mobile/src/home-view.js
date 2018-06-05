@@ -19,9 +19,9 @@ import ReactNative, {
   Platform, Text, TextInput, View, ScrollView, StyleSheet
 } from 'react-native'
 import client, { TitleBar } from '@doubledutch/rn-client'
-import Offers from './offers'
+import Offers from './Offers'
 import FirebaseConnector from '@doubledutch/firebase-connector'
-const fbc = FirebaseConnector(client, 'Offers')
+const fbc = FirebaseConnector(client, 'offers')
 fbc.initializeAppWithSimpleBackend()
 
 export default class HomeView extends Component {

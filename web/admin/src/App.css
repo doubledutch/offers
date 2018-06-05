@@ -1,0 +1,447 @@
+:root {
+  font: 400 14px -apple-system, BlinkMacSystemFont, 'Fira Sans', 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #4A4A4A;
+}
+
+html, body, input, select, form, button{
+  font: inherit;
+  color: inherit;
+}
+
+h2 {
+  font-weight: 300;
+  margin: 0px;
+}
+.App-intro {
+  font-size: large;
+  text-align: center;
+}
+
+.avatar {
+  width: 40px;
+}
+
+.Modal {
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  background-color: #FFFFFF;
+}
+
+.Overlay {
+  position: fixed;
+  left: 29%;
+  top: 20px; 
+  background-color: gray;
+}
+
+.bigBoxTitle{
+  font-size: 24px;
+  height: 24px;
+  display: flex;
+  margin-bottom: 30px;
+  width: 100px;
+}
+
+.topBox {
+  margin-left: 21px;
+  margin-right: 21px;
+}
+
+.headerPadding {
+  padding-left: 100px;
+}
+
+.headerBox {
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.previewContainer {
+  display: flex;
+  flex-flow: row wrap;
+  margin-Top: 0px;
+  min-height: 200px;
+  padding: 0px;
+  margin-bottom: 10px;
+  background-Color:white;
+  border-radius: 5px;
+  border: 1px solid #E3ECF8;
+  overflow: auto;
+}
+
+.preview-cell__container {
+  flex:1;
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+}
+
+.cellTitle{
+  width: 250px;
+  overflow-x: auto;
+  text-align: left;
+}
+
+.cellDes {
+  width: 400px;
+  white-space: nowrap;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+}
+
+.containerSmall {
+  box-sizing: border-box;
+  font-size: 14;
+  border-radius: 5px;
+  border: 1px solid #E3ECF8;
+  background-color: #FFFFFF;
+  padding: 20px;
+  margin: 20px 0px;
+}
+
+
+.deleteButton{
+  border: none;
+  font-size: 13px;
+  margin: 24px 10px;
+  margin-right: 20px;
+  height: 14px;
+  width: 10px;
+}
+
+.dragButton {
+  border: none;
+  width: 14px;
+  height: 14px;
+  padding: 10px;
+}
+
+.editButton{
+  border: none;
+  width: 14px;
+  height: 14px;
+}
+
+.qaButton{
+  background-color: #009DCD;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-size: 13px;
+  height: 34px;
+  width: 150px;
+  margin-top: 10px;
+}
+
+.qaButtonOff{
+  background-color: #9B9B9b;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 13px;
+  height: 34px;
+  margin-top: 10px;
+}
+
+.topForm {
+  flex: 1; 
+  height: 100px;
+  flex-flow: nowrap;
+  display: flex;
+  padding: 10px 0px 0px 20px;
+}
+
+.bottomForm {
+  height: 140px;
+  flex: 1;
+  display: flex;
+  padding: 0px 20px;
+}
+
+.searchBox {
+  height: 30px;
+  padding-left: 10px;
+  border-radius: 3px;
+  width: 130px;
+  border: 0.75px solid #DCDCDC;
+}
+
+.csvButton{
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #009DCD;
+  border-radius: 5px;
+  color: #009DCD;
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 8px 15px;
+}
+
+.button {
+  background-color: white;
+  border: 1px solid #009DCD;
+  border-radius: 5px;
+  color: #009DCD;
+  font-size: 13px;
+  padding: 8px 15px;
+  margin-left: 20px;
+}
+
+.formBox{
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+  margin-Top: 10px;
+  margin-bottom: 10px;
+  background-Color:white;
+}
+
+.formButton{
+  border-radius: 5px;
+  width: 100px;
+  height: 37px;
+  color: white;
+  background-color: #4E91E0;
+  margin: 15px 20px;
+  float: right;
+}
+
+.outerContainer h2 {
+  margin: 0px 20px;
+  font-size: 18px;
+}
+
+.closeModalButton {
+  color: lightgray;
+  background-color: #ffffff;
+  border: none;
+  font-family: Helvetica;
+  font-weight: 600;
+}
+
+.questionBox {
+  width: 50%;
+  margin-right: 20px;
+}
+
+.messages{
+  display: flex;
+  margin-left: 21px;
+  margin-top: 48px;
+}
+
+.boxTitle{
+  font-size: 16px;
+  height: 22px;
+  font-weight: 600;
+}
+
+.box {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 0px;
+  margin-right: 20px;
+  font-weight: 400;
+  padding: 5px;
+  display: flex;
+  width: 240px;
+}
+
+.boxTitleWide{
+  font-size: 16px;
+  height: 120px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.wideBox {
+  border: solid 1px #abbac9;
+}
+
+.buttonText{
+  margin-right: 15px;
+  font-size: 14px;
+  height: 19px;
+  margin-top: 23px;
+}
+
+.buttonBox{
+  float: right;
+  display: flex;
+  margin-right: -5px;
+}
+
+.statusesBox{
+  display: flex;
+  flex: 1;
+  flex-direction: row wrap;
+  margin: 10px;
+  margin-right: 05px;
+  margin-top: 30px;
+}
+
+
+.listBox{
+  padding: 0px;
+}
+
+.list{
+  display: flex;
+  border-radius: 5px;
+  border: 1px solid #E3ECF8;
+  height: 250px;
+  flex-direction: column;
+  list-style: none;
+  margin-top: 0px;
+  padding: 0px;
+  overflow: auto;
+}
+
+.list li {
+  margin: 0px;
+  padding: 0px;
+  border-bottom: 1px solid #D1D1D1;
+}
+
+.list li:nth-child(odd) { background: #F8F8F8 }
+
+.listItemBox{
+  display: flex;
+  flex: 1;
+  height: 40px;
+  align-content: center;
+  justify-content: center;
+}
+
+.headerItemBox{
+  display: flex;
+  flex: 1;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+.headerItemBox p{
+  margin-left: 12px;
+  font-size: 14px;
+  height: 20px;
+  margin-top: 10px;
+  display: flex;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 250px;
+  padding-left: 5px;
+  font-weight: 600;
+}
+
+.headerItemBox2{
+  display: flex;
+  flex: 1;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+.headerItemBox2 p{
+  margin-left: 12px;
+  font-size: 14px;
+  height: 20px;
+  margin-top: 10px;
+  display: flex;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  width: 200px;
+  padding-left: 20px;
+  font-weight: 600;
+}
+
+.offerTitle{
+  font-size: 16px;
+  height: 20px;
+  margin-top: 10px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-right: 10px;
+  margin-bottom: 5px; 
+}
+
+.itemTitle{
+  margin-left: 16px;
+  font-size: 16px;
+  display: flex;
+  width: 250px;
+  flex-direction: row;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 0px;
+  height: 20px;
+
+}
+
+h1 {
+  font-weight: 300;
+}
+
+.modalTitle{
+  font-weight: 300;
+}
+
+.modalTop {
+  display: flex;
+  flex: 1;
+  flex-flow: nowrap;
+  border-bottom: 1px solid #E3ECF8;
+  padding: 0px 0px 0px 20px;
+  align-items: center;
+}
+
+.modalBottom {
+  flex: 1;
+  flex-flow: nowrap;
+  border-top: 1px solid #E3ECF8;
+  padding: 0px 0px;
+  align-items: center;
+}
+
+.itemDes {
+  margin-left: 12px;
+  margin-top: 10px;
+  font-size: 16px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.button1 {
+  height: 22px;
+  width: 21px;
+  margin-top: 11px;
+  margin-right: 21px;
+}
+
+.button2 {
+  height: 12px;
+  width: 16px;
+  margin-top: 16px;
+  margin-right: 21px;
+}
+
+.closeButton{
+  flex: 1;
+  display: flex;
+  float: right;
+  margin-Top: 5px;
+  border: none;
+  margin-Left: 5px;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: #ffffff;
+}
