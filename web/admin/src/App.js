@@ -23,7 +23,7 @@ import FormView from './FormView'
 import FirebaseConnector from '@doubledutch/firebase-connector'
 import { CSVLink } from 'react-csv';
 import '@doubledutch/react-components/lib/base.css'
-const fbc = FirebaseConnector(client, 'offers')
+const fbc = FirebaseConnector(client, 'Offers')
 fbc.initializeAppWithSimpleBackend()
 
 const reorder = (list, startIndex, endIndex) => {
