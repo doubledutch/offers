@@ -101,10 +101,6 @@ export default class Offers extends Component {
     this.props.sendData(this.props.title)
     var currentText = this.state.renderConfirm
     this.setState({renderConfirm: !currentText})
-    setTimeout(() => {
-      this.handleClose()
-      }
-      ,3000)
   }
 
   handleClose = () => {
