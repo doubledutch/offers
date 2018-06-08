@@ -16,7 +16,7 @@
 
 import React, { Component } from 'react'
 import ReactNative, {
-  Platform, Text, TextInput, View, ScrollView, StyleSheet
+  Platform, Text, TextInput, View, ScrollView, StyleSheet, Dimensions
 } from 'react-native'
 import client, { TitleBar } from '@doubledutch/rn-client'
 import Offers from './Offers'
@@ -52,7 +52,11 @@ export default class HomeView extends Component {
     return (
       <View style={{flex: 1}}>
         <TitleBar title="Offers" client={client} signin={this.signin} />
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} 
+        ref={(scrollView) => {this.scrollView = scrollView}}
+        onContentSizeChange={(contentWidth, contentHeight)=>{
+          scrollViewBottom = contentHeight;
+          }}>
           { this.state.componentConfigs ? this.state.componentConfigs.map(this.getComponent) : <Text>Loading...</Text> }
         </ScrollView>
       </View>
@@ -63,9 +67,14 @@ export default class HomeView extends Component {
     switch(details.type) {
       case "Offer" :
         return(
-          <Offers {...details} key={i} sendData={this.sendData}/>
+          <Offers {...details} key={i} sendData={this.sendData} scrolltoBottom={this.scrolltoBottom} isLast={this.state.componentConfigs.length-1 == i}/>
         )
     }
+  }
+
+  scrolltoBottom = () => {
+    let height = Dimensions.get('window').width / 1.6
+    this.scrollView.scrollTo(scrollViewBottom - height)
   }
 
   sendData = (title)=> {

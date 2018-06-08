@@ -95,6 +95,7 @@ export default class Offers extends Component {
   handleOpen = () => {
     var currentText = this.state.renderText
     this.setState({renderText: !currentText})
+    if (!currentText && this.props.isLast) this.props.scrolltoBottom()
   }
 
   handleClick = () => {
@@ -109,15 +110,12 @@ export default class Offers extends Component {
 }
     
 const s = ReactNative.StyleSheet.create({
-
   container : {
     padding: 0, 
     borderColor:'#D8D8D8',
     borderBottomWidth:0, 
     backgroundColor: "#FFFFFF"
   },
-
-
   dimensionStyle : {
     flexDirection: "row", 
     flexGrow: 1,
