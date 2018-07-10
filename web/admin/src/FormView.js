@@ -33,6 +33,7 @@ export default class FormView extends Component {
               className="box"
               name="title"
               type="text"
+              placeholder="Name"
               required
               value={this.props.newCell.title}
               onChange={this.handleInputChange} />
@@ -44,6 +45,7 @@ export default class FormView extends Component {
               name="image"
               type="text"
               required
+              placeholder="https://www.offer.com/image"
               value={this.props.newCell.image}
               onChange={this.handleInputChange} />
             </label>
@@ -56,6 +58,7 @@ export default class FormView extends Component {
               name="des"
               type="text"
               required
+              placeholder="Ex. Join us for a free security webinar!"
               value={this.props.newCell.des}
               onChange={this.handleInputChange} />
             </label>
