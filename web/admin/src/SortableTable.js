@@ -87,8 +87,8 @@ class SortableTable extends Component {
                 <p className="cellTitle">{item.title}</p>
                 <p className="cellDes">{item.des}</p>
                 <div style={{flex: 1}} />
-                <img className="editButton" name={i}  value="true" onClick={() => this.props.handleEdit(i)} src={pencil} alt="edit" />
-                <img className="deleteButton" name={i}  value="true" onClick={() => this.props.handleDelete(i)} src={trashcan} alt="delete" />
+                <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleEdit(i)}>Edit</button>
+                <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleDelete(i)}>Remove</button>
               </div>
             </div>
               {provided.placeholder}
