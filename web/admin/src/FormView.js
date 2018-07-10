@@ -28,7 +28,7 @@ export default class FormView extends Component {
         <div>
           <span className="topForm">
             <label className="boxTitle">
-              Title
+              Offer Name
               <input
               className="box"
               name="title"
@@ -39,7 +39,7 @@ export default class FormView extends Component {
               onChange={this.handleInputChange} />
             </label>
             <label className="boxTitle">
-              Image Link
+              Image URL
               <input
               className="box"
               name="image"
@@ -52,7 +52,7 @@ export default class FormView extends Component {
           </span>
           <span className="bottomForm">
             <label className="boxTitleWide">
-              Description
+              Offer Description
               <textarea
               className="wideBox"
               name="des"
