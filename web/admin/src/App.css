@@ -89,8 +89,11 @@ h2 {
 
 .cellTitle{
   width: 250px;
-  overflow-x: auto;
   text-align: left;
+  white-space: nowrap;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden; 
 }
 
 .cellDes {
@@ -214,8 +217,9 @@ h2 {
   height: 37px;
   color: white;
   background-color: #4E91E0;
-  margin: 15px 20px;
+  margin: 15px 20px 15px 0px;
   float: right;
+  border: none;
 }
 
 .outerContainer h2 {
@@ -414,7 +418,9 @@ h1 {
   flex-flow: nowrap;
   border-top: 1px solid #E3ECF8;
   padding: 0px 0px;
+  display: flex;
   align-items: center;
+  justify-content: flex-end
 }
 
 .itemDes {

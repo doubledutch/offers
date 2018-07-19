@@ -43,7 +43,7 @@ export default class Offers extends Component {
           <View style={{backgroundColor: "rgba(52, 52, 52, 0.7)", flex: 1, justifyContent: 'center', padding: 10}}>
             <Text style={s.title}>{title}</Text>
             <View style={s.buttonBox}>
-              <Text style={s.description}>Show more</Text>
+              <Text style={s.description}>Show {this.state.renderText ? "less" : "more"}</Text>
               {this.showIcon(rotate)}
             </View>
           </View>

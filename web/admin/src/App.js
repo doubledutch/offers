@@ -127,7 +127,7 @@ export default class App extends Component {
           handleSubmit={this.addNewCell}
           handleEdit={this.editCell}
           showModal={this.state.showModal}
-          showModalFunction={this.showModal}
+          showModalFunction={this.closeModal}
           edit={this.state.edit}
         />
         <div className="containerSmall">
@@ -190,6 +190,11 @@ export default class App extends Component {
     this.setState({showModal: !currentStatus})
   }
 
+  closeModal = () => {
+    const currentStatus = this.state.showModal
+    this.setState({showModal: !currentStatus, newCell})
+  }
+
   updateCell = (testCell) => {
     var newCell = Object.assign({}, testCell)
     this.setState({ newCell });
@@ -197,31 +202,30 @@ export default class App extends Component {
 
   editCell = () => {
     var cells = this.state.cells
-    const newCell =  {type:"Offer",
-    image:"",
-    title:"",
-    des:""}
     cells[this.state.index] = this.state.newCell
-    this.setState({cells, newCell, showModal: false, edit: false})
+    const blankCell = Object.assign({}, newCell)
+    this.setState({cells, newCell: blankCell, showModal: false, edit: false})
     fbc.database.public.adminRef('offers').set({"cells": cells})
   }
 
   addNewCell = () => {
     var cells = this.state.cells
-    const newCell =  {type:"Offer",
-    image:"",
-    title:"",
-    des:""}
-    cells.push(this.state.newCell)
-    this.setState({cells, newCell, showModal: false})
+    let publishCell = this.state.newCell
+    const blankCell = Object.assign({}, newCell)
+    publishCell.title = publishCell.title.trim()
+    publishCell.des = publishCell.des.trim()
+    cells.push(publishCell)
     fbc.database.public.adminRef('offers').set({"cells": cells})
+    this.setState({cells, newCell: blankCell, showModal: false})
   }
 
   deleteCell = (i) => {
-    var cells = this.state.cells
-    cells.splice(i, 1)
-    this.setState({cells})
-    fbc.database.public.adminRef('offers').set({"cells": cells})
+    if (window.confirm("Are you sure you want to delete this offer?")) {
+      var cells = this.state.cells
+      cells.splice(i, 1)
+      this.setState({cells})
+      fbc.database.public.adminRef('offers').set({"cells": cells})
+    }
 
   }
 
@@ -231,3 +235,8 @@ export default class App extends Component {
 function sortUsers(a,b) {
   return a.clickUTC > b.clickUTC ? -1 : 1
 }
+
+const newCell =  { type:"Offer",
+image:"",
+title:"",
+des:"" }

@@ -35,6 +35,7 @@ export default class FormView extends Component {
               type="text"
               placeholder="Name"
               required
+              maxLength={50}
               value={this.props.newCell.title}
               onChange={this.handleInputChange} />
             </label>
@@ -58,6 +59,7 @@ export default class FormView extends Component {
               name="des"
               type="text"
               required
+              maxLength={400}
               placeholder="Ex. Join us for a free security webinar!"
               value={this.props.newCell.des}
               onChange={this.handleInputChange} />
@@ -65,7 +67,8 @@ export default class FormView extends Component {
           </span>
         </div>
         <div className="modalBottom">
-          <input type="submit" value="Add Offer" className="formButton"/>
+          <button className="formButton" onClick={this.props.showModalFunction}>Cancel</button>
+          <input type="submit" value={this.props.edit ? "Save Offer" : "Add Offer"} className="formButton"/>
         </div>
       </form>
     ) 
@@ -89,7 +92,7 @@ export default class FormView extends Component {
         overlayClassName="Overlay"
       >
         <div className="modalTop">
-          <h1 className="modalTitle">New Offer</h1>
+          <h1 className="modalTitle">{this.props.edit ? "Edit " :"New "}Offer</h1>
           <div style={{flex:1 }}/>
           <button className="closeModalButton" onClick={this.props.showModalFunction}>X</button>
         </div>
