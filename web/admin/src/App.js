@@ -118,7 +118,6 @@ export default class App extends Component {
   render() {
     var sortedClicks = this.state.clicks.sort(sortUsers)
     if (this.state.search.length) sortedClicks = this.filterClicks(sortedClicks, this.state.search)
-    console.log(sortedClicks)
     return (
       <div className="App">
         <FormView
@@ -169,7 +168,7 @@ export default class App extends Component {
     clicks.forEach(function(content){
       var title = content.firstName + " " + content.lastName
       if (title && content.offer) {
-        if (title.toLowerCase().indexOf(search)!== -1 || content.offer.toLowerCase().indexOf(search)!== -1){
+        if (title.toLowerCase().indexOf(search.trim())!== -1 || content.offer.toLowerCase().indexOf(search.trim())!== -1){
           filteredClicks.push(content);
         }
       }
@@ -187,7 +186,7 @@ export default class App extends Component {
 
   showModal = () => {
     const currentStatus = this.state.showModal
-    this.setState({showModal: !currentStatus})
+    this.setState({showModal: !currentStatus, edit: false})
   }
 
   closeModal = () => {
@@ -214,6 +213,7 @@ export default class App extends Component {
     const blankCell = Object.assign({}, newCell)
     publishCell.title = publishCell.title.trim()
     publishCell.des = publishCell.des.trim()
+    publishCell.image = publishCell.image.trim()
     cells.push(publishCell)
     fbc.database.public.adminRef('offers').set({"cells": cells})
     this.setState({cells, newCell: blankCell, showModal: false})

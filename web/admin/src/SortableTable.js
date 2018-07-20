@@ -86,8 +86,8 @@ class SortableTable extends Component {
             >
               <div className="preview-cell__container">
                 <img className="dragButton" name={i}  value="true" src={reordericon} alt="move" />
-                <p className="cellTitle">{item.title}</p>
-                <p className="cellDes">{item.des}</p>
+                <p className="cellTitle">{item.title || ""}</p>
+                <p className="cellDes">{item.des || ""}</p>
                 <div style={{flex: 1}} />
                 <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleEdit(i)}>Edit</button>
                 <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleDelete(i)}>Remove</button>

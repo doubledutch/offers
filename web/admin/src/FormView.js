@@ -6,7 +6,8 @@ export default class FormView extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      video: false
+      video: false,
+      isError: false
     }
   }
 
@@ -20,6 +21,7 @@ export default class FormView extends Component {
       obj[path[path.length-1]] = checked
     }  
     this.props.updateCell(newCell)   
+    this.setState({isError: false})
   }
 
   formInput = () => {
@@ -68,7 +70,10 @@ export default class FormView extends Component {
         </div>
         <div className="modalBottom">
           <button className="formButton" onClick={this.props.showModalFunction}>Cancel</button>
-          <input type="submit" value={this.props.edit ? "Save Offer" : "Add Offer"} className="formButton"/>
+          {this.state.isError
+          ? <button className="formButton">Retry</button>
+          : <input type="submit" value={this.props.edit ? "Save Offer" : "Add Offer"} className="formButton"/>
+          }
         </div>
       </form>
     ) 
@@ -76,8 +81,13 @@ export default class FormView extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    if (this.props.edit) this.props.handleEdit(event)
-    else this.props.handleSubmit(event)
+    if (this.props.newCell.des.trim() && this.props.newCell.title.trim() && this.props.newCell.image) {
+      if (this.props.edit) this.props.handleEdit(event)
+      else this.props.handleSubmit(event)
+    }
+    else {
+      this.setState({isError: true})
+    }
   }
 
   render(){
