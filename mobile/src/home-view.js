@@ -52,12 +52,13 @@ export default class HomeView extends Component {
     return (
       <View style={{flex: 1}}>
         <TitleBar title="Offers" client={client} signin={this.signin} />
-        <ScrollView style={styles.container} 
+        <ScrollView style={s.container} 
         ref={(scrollView) => {this.scrollView = scrollView}}
         onContentSizeChange={(contentWidth, contentHeight)=>{
           scrollViewBottom = contentHeight;
           }}>
-          { this.state.componentConfigs ? this.state.componentConfigs.map(this.getComponent) : <Text>Loading...</Text> }
+          { this.state.componentConfigs.length ? this.state.componentConfigs.map(this.getComponent) 
+            : <View style={s.helpTextContainer}><Text style={s.helpText}>No offers are currently available</Text></View> }
         </ScrollView>
       </View>
     )
@@ -86,14 +87,24 @@ export default class HomeView extends Component {
       company: client.currentUser.company || null,
       title: client.currentUser.title || null,
       phone: client.currentUser.phone || null,
-      clickUTC: new Date().toString()
+      clickUTC: new Date().getTime()
     }).catch(error => {Alert.alert("Please try reloading page to connect to the database")})
   }
 }
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:'#E8E8E8'
-  }
+  },
+  helpTextContainer: {
+    flex: 1, 
+    alignItems: "center", 
+    justifyContent: "center"
+  },
+  helpText: {
+    fontSize: 20, 
+    marginTop: 150, 
+    textAlign: "center"
+  },
 })

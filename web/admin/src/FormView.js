@@ -69,7 +69,7 @@ export default class FormView extends Component {
           </span>
         </div>
         <div className="modalBottom">
-          <button className="formButton" onClick={this.props.showModalFunction}>Cancel</button>
+          <button className="formButton" onClick={this.cancelSave}>Cancel</button>
           {this.state.isError
           ? <button className="formButton">Retry</button>
           : <input type="submit" value={this.props.edit ? "Save Offer" : "Add Offer"} className="formButton"/>
@@ -77,6 +77,11 @@ export default class FormView extends Component {
         </div>
       </form>
     ) 
+  }
+
+  cancelSave = () => {
+    this.setState({isError: false})
+    this.props.showModalFunction()
   }
 
   handleSubmit = (event) => {

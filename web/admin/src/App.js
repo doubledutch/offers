@@ -92,7 +92,6 @@ export default class App extends Component {
             newClicks.push(obj)
           }
           const totalClicks = this.state.clicks.concat(newClicks)
-          totalClicks.sort(sortUsers)
           this.setState({ clicks: totalClicks})
         })
         adminableRef.on('child_changed', data => {
@@ -108,7 +107,6 @@ export default class App extends Component {
             }  
           }
           var totalClicks = this.state.clicks.concat(newClicks)
-          totalClicks.sort(sortUsers)
           this.setState({ clicks: totalClicks})
         })
     })
@@ -191,7 +189,8 @@ export default class App extends Component {
 
   closeModal = () => {
     const currentStatus = this.state.showModal
-    this.setState({showModal: !currentStatus, newCell})
+    const blankCell = Object.assign({}, newCell)
+    this.setState({showModal: !currentStatus, newCell: blankCell})
   }
 
   updateCell = (testCell) => {
@@ -201,8 +200,12 @@ export default class App extends Component {
 
   editCell = () => {
     var cells = this.state.cells
-    cells[this.state.index] = this.state.newCell
+    let publishCell = this.state.newCell
     const blankCell = Object.assign({}, newCell)
+    publishCell.title = publishCell.title.trim()
+    publishCell.des = publishCell.des.trim()
+    publishCell.image = publishCell.image.trim()
+    cells[this.state.index] = publishCell
     this.setState({cells, newCell: blankCell, showModal: false, edit: false})
     fbc.database.public.adminRef('offers').set({"cells": cells})
   }
@@ -233,7 +236,7 @@ export default class App extends Component {
 }
 
 function sortUsers(a,b) {
-  return a.clickUTC > b.clickUTC ? -1 : 1
+  return b.clickUTC - a.clickUTC
 }
 
 const newCell =  { type:"Offer",
