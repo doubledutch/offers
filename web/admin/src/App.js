@@ -236,10 +236,13 @@ export default class App extends Component {
 }
 
 function sortUsers(a,b) {
-  return b.clickUTC - a.clickUTC
+  const dateA = new Date(a.clickUTC).getTime()
+  const dateB = new Date(b.clickUTC).getTime()
+  return dateB - dateA
 }
 
 const newCell =  { type:"Offer",
 image:"",
 title:"",
-des:"" }
+des:"" 
+}

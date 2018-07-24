@@ -87,7 +87,7 @@ export default class HomeView extends Component {
       company: client.currentUser.company || null,
       title: client.currentUser.title || null,
       phone: client.currentUser.phone || null,
-      clickUTC: new Date().getTime()
+      clickUTC: new Date().toString()
     }).catch(error => {Alert.alert("Please try reloading page to connect to the database")})
   }
 }
