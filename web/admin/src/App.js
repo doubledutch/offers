@@ -154,7 +154,7 @@ export default class App extends Component {
           />
           <div className="headerBox">
             <div style={{flex: 1}}/>
-            <CSVLink className="csvButton" data={sortedClicks} filename={"clicks.csv"}>Export List of Attendees</CSVLink>
+            <CSVLink className="csvButton" target='_self' data={sortedClicks} filename={"clicks.csv"}>Export List of Attendees</CSVLink>
           </div>
         </div>
       </div>

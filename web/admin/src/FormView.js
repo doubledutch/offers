@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Modal  from 'react-modal'
+import {TextInput} from '@doubledutch/react-components'
 
 export default class FormView extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class FormView extends Component {
     return (
       <form className="formBox" onSubmit={this.handleSubmit}>
         <div>
-          <span className="topForm">
+          <div className="topForm">
             <label className="boxTitle">
               Offer Name
               <input
@@ -52,8 +53,8 @@ export default class FormView extends Component {
               value={this.props.newCell.image}
               onChange={this.handleInputChange} />
             </label>
-          </span>
-          <span className="bottomForm">
+          </div>
+          <div className="bottomForm">
             <label className="boxTitleWide">
               Offer Description
               <textarea
@@ -66,7 +67,7 @@ export default class FormView extends Component {
               value={this.props.newCell.des}
               onChange={this.handleInputChange} />
             </label>
-          </span>
+          </div>
         </div>
         <div className="modalBottom">
           <button className="formButton" onClick={this.cancelSave}>Cancel</button>
@@ -109,7 +110,7 @@ export default class FormView extends Component {
         <div className="modalTop">
           <h1 className="modalTitle">{this.props.edit ? "Edit " :"New "}Offer</h1>
           <div style={{flex:1 }}/>
-          <button className="closeModalButton" onClick={this.props.showModalFunction}>X</button>
+          <button className="closeModalButton" onClick={this.cancelSave}>X</button>
         </div>
         {this.props.newCell ? this.formInput() : null}
       </Modal>

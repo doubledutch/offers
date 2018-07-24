@@ -1,6 +1,6 @@
 {
   "name": "Offers",
-  "version": "0.0.98",
+  "version": "0.0.99",
   "baseBundleVersion": "0.46.4",
   "private": true,
   "scripts": {
