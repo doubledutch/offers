@@ -41,6 +41,7 @@ export default class FormView extends Component {
               maxLength={50}
               value={this.props.newCell.title}
               onChange={this.handleInputChange} />
+              {(this.state.isError && this.props.newCell.title.trim().length === 0) && <p className="errorText">*Please enter a valid title</p>}
             </label>
             <label className="boxTitle">
               Image URL
@@ -52,6 +53,7 @@ export default class FormView extends Component {
               placeholder="https://www.offer.com/image"
               value={this.props.newCell.image}
               onChange={this.handleInputChange} />
+              {(this.state.isError && this.props.newCell.image.trim().length === 0) && <p className="errorText">*Please enter a valid url</p>}
             </label>
           </div>
           <div className="bottomForm">
@@ -66,6 +68,7 @@ export default class FormView extends Component {
               placeholder="Ex. Join us for a free security webinar!"
               value={this.props.newCell.des}
               onChange={this.handleInputChange} />
+              {(this.state.isError && this.props.newCell.des.trim().length === 0) && <p className="errorText">*Please enter a valid description</p>}
             </label>
           </div>
         </div>
