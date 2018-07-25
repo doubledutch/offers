@@ -130,7 +130,7 @@ export default class App extends Component {
         <div className="containerSmall">
           <div className="headerBox">
             <h1>Offers</h1>
-            <button className="button" onClick={this.showModal}>Add Offer</button>
+            <button className="button" onClick={this.showModal} disabled={this.state.showModal}>Add Offer</button>
           </div>
           <SortableTable
             items = {this.state.cells}
