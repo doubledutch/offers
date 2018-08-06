@@ -64,7 +64,7 @@ export default class FormView extends Component {
               name="des"
               type="text"
               required
-              maxLength={400}
+              maxLength={1000}
               placeholder="Ex. Join us for a free security webinar!"
               value={this.props.newCell.des}
               onChange={this.handleInputChange} />
