@@ -58,7 +58,7 @@ export default class HomeView extends Component {
           scrollViewBottom = contentHeight;
           }}>
           { this.state.componentConfigs.length ? this.state.componentConfigs.map(this.getComponent) 
-            : <View style={s.helpTextContainer}><Text style={s.helpText}>No offers are currently available</Text></View> }
+            : <View style={s.helpTextContainer}><Text style={s.helpText}></Text></View> }
         </ScrollView>
       </View>
     )
