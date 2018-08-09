@@ -36,7 +36,7 @@ export default class Offers extends Component {
       ]}
     }
     return(
-      <View>
+      <View style={this.props.isLast && !this.state.renderText ? s.shadow : null}>
         <View style={s.border}/>
         <TouchableOpacity style={s.container} onPress={this.handleOpen}>
         <Image source={{uri: image}} style={s.dimensionStyle} alt="Image">
@@ -66,7 +66,7 @@ export default class Offers extends Component {
     if (this.state.renderText) {
       if (this.state.renderConfirm === false) {
         return (
-          <View style={s.textBox}>
+          <View style={[s.textBox, s.shadow2]}>
             <Text style={s.title2}>{des}</Text>
               <TouchableOpacity onPress={this.handleClick} style={{marginTop:0}}>
                 <View style={s.footerButton}>
@@ -78,7 +78,7 @@ export default class Offers extends Component {
       }
       else{
         return (
-          <View style={s.textBox}>
+          <View style={[s.textBox, s.shadow2]}>
             <Text style={s.title1}>Thank you!</Text>
             <Text style={s.title2}>One of our team members will be reaching out.</Text>     
               <TouchableOpacity onPress={this.handleClose} style={{marginTop:0}}>
@@ -110,6 +110,17 @@ export default class Offers extends Component {
 }
     
 const s = ReactNative.StyleSheet.create({
+  shadow: {
+    shadowColor: 'gray',
+    shadowOffset: { height: 10 },
+    shadowOpacity: 0.75,
+  },
+  shadow2: {
+    marginBottom: 10,
+    shadowColor: 'gray',
+    shadowOffset: { height: 10 },
+    shadowOpacity: 0.75,
+  },
   container : {
     padding: 0, 
     borderColor:'#D8D8D8',

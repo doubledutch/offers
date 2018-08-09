@@ -57,7 +57,9 @@ export default class HomeView extends Component {
         onContentSizeChange={(contentWidth, contentHeight)=>{
           scrollViewBottom = contentHeight;
           }}>
-          { this.state.componentConfigs.length ? this.state.componentConfigs.map(this.getComponent) 
+          { this.state.componentConfigs.length ? <View>
+            {this.state.componentConfigs.map(this.getComponent)}
+          </View>
             : <View style={s.helpTextContainer}><Text style={s.helpText}></Text></View> }
         </ScrollView>
       </View>
@@ -75,7 +77,7 @@ export default class HomeView extends Component {
 
   scrolltoBottom = () => {
     let height = Dimensions.get('window').width / 1.6
-    this.scrollView.scrollTo(scrollViewBottom - height)
+    this.scrollView.scrollTo({y:scrollViewBottom - height})
   }
 
   sendData = (title)=> {
@@ -95,7 +97,7 @@ export default class HomeView extends Component {
 const s = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#E8E8E8'
+    backgroundColor:'#E8E8E8',
   },
   helpTextContainer: {
     flex: 1, 
