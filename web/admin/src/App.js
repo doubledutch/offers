@@ -190,7 +190,7 @@ export default class App extends Component {
         newList.push(newItem)
       })
       this.setState({exporting: true, exportList: newList})
-      setTimeout(()=>this.setState({exporting: false, newList: []}), 1000)
+      setTimeout(()=>this.setState({exporting: false, newList: []}), 3000)
     })
   }
 
