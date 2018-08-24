@@ -158,10 +158,8 @@ export default class App extends Component {
           />
           <div className="headerBox">
             <div style={{flex: 1}}/>
-            {/* {exportCSVButton()} */}
             <button className="borderButton" onClick={()=>this.prepareCsv(sortedClicks)}>Export List of Attendees</button>
             {this.state.exporting ? <CSVDownload data={this.state.exportList} target="_blank" /> : null}
-            <CSVLink className="csvButton" target='_self' data={this.parseForExport(sortedClicks)} filename={"clicks.csv"}>Export List of Attendees</CSVLink>
           </div>
         </div>
       </div>
