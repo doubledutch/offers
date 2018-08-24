@@ -89,6 +89,10 @@ export default class App extends Component {
             var obj = data.val().click[i]
             obj["key"] = i
             obj["clickDate"] = new Date(obj.clickUTC).toLocaleDateString()
+            if (data.val().user) {
+              obj["email"] = obj.val().user.email
+              obj["phone"] = obj.val().user.phone
+            }
             newClicks.push(obj)
           }
           const totalClicks = this.state.clicks.concat(newClicks)
@@ -154,11 +158,28 @@ export default class App extends Component {
           />
           <div className="headerBox">
             <div style={{flex: 1}}/>
-            <CSVLink className="csvButton" target='_self' data={sortedClicks} filename={"clicks.csv"}>Export List of Attendees</CSVLink>
+            <CSVLink className="csvButton" target='_self' data={this.parseForExport(sortedClicks)} filename={"clicks.csv"}>Export List of Attendees</CSVLink>
           </div>
         </div>
       </div>
     )
+  }
+
+  parseForExport = (clicks) => {
+    let newList = []
+    clicks.forEach(item => {
+      const newItem = {
+        date_clicked: item.clickDate,
+        offer: item.offer,
+        name: item.firstName + " " + item.lastName,
+        phone: item.phone,
+        email: item.email,
+        company: item.company,
+        title: item.title
+      }
+      newList.push(newItem)
+    })
+    return newList
   }
 
   filterClicks = (clicks, search) => {
