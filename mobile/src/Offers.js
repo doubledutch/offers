@@ -70,7 +70,7 @@ export default class Offers extends Component {
             <Text style={s.title2}>{des}</Text>
               <TouchableOpacity onPress={this.handleClick} style={{marginTop:0}}>
                 <View style={s.footerButton}>
-                  <Text style={s.footerButtonText}>I'm Interested</Text>
+                  <Text style={s.footerButtonText}>I&apos;m Interested</Text>
                 </View>
               </TouchableOpacity>
           </View>
