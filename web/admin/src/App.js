@@ -21,7 +21,7 @@ import List from './List'
 import SortableTable from './SortableTable'
 import FormView from './FormView'
 import FirebaseConnector from '@doubledutch/firebase-connector'
-import { CSVLink } from 'react-csv';
+import { CSVLink, CSVDownload } from 'react-csv';
 import '@doubledutch/react-components/lib/base.css'
 const fbc = FirebaseConnector(client, 'Offers')
 fbc.initializeAppWithSimpleBackend()
@@ -47,7 +47,9 @@ export default class App extends Component {
       edit: false,
       index: 0,
       showModal: false,
-      search: ""
+      search: "",
+      exportList: [],
+      exporting: false
      }
     this.signin = fbc.signinAdmin()
       .then(user => this.user = user)
@@ -75,24 +77,22 @@ export default class App extends Component {
 
   componentDidMount() {
     this.signin.then(() => {
-        const adminableRef = fbc.database.private.adminableUsersRef()
-        const cellsRef = fbc.database.public.adminRef('offers') 
+      const adminableRef = fbc.database.private.adminableUsersRef()
+      const cellsRef = fbc.database.public.adminRef('offers') 
       cellsRef.on('child_added', data => {
         this.setState({ cells: [...data.val()] })
       })
       cellsRef.on('child_changed', data => {
         this.setState({ cells: [...data.val()] })
       })
+
         adminableRef.on('child_added', data => {
           var newClicks = []
           for (var i in data.val().click) {   
             var obj = data.val().click[i]
-            obj["key"] = i
-            obj["clickDate"] = new Date(obj.clickUTC).toLocaleDateString()
-            if (data.val().user) {
-              obj["email"] = obj.val().user.email
-              obj["phone"] = obj.val().user.phone
-            }
+            obj.key = i
+            obj.userId = data.key
+            obj.clickDate = new Date(obj.clickUTC).toLocaleDateString()
             newClicks.push(obj)
           }
           const totalClicks = this.state.clicks.concat(newClicks)
@@ -133,8 +133,8 @@ export default class App extends Component {
         />
         <div className="containerSmall">
           <div className="headerBox">
-            <h1>Offers</h1>
-            <button className="button" onClick={this.showModal} disabled={this.state.showModal}>Add Offer</button>
+            <h1 className="headerMargin">Offers</h1>
+            <button className="borderButton" onClick={this.showModal} disabled={this.state.showModal}>Add Offer</button>
           </div>
           <SortableTable
             items = {this.state.cells}
@@ -158,6 +158,9 @@ export default class App extends Component {
           />
           <div className="headerBox">
             <div style={{flex: 1}}/>
+            {/* {exportCSVButton()} */}
+            <button className="borderButton" onClick={()=>this.prepareCsv(sortedClicks)}>Export List of Attendees</button>
+            {this.state.exporting ? <CSVDownload data={this.state.exportList} target="_blank" /> : null}
             <CSVLink className="csvButton" target='_self' data={this.parseForExport(sortedClicks)} filename={"clicks.csv"}>Export List of Attendees</CSVLink>
           </div>
         </div>
@@ -165,21 +168,32 @@ export default class App extends Component {
     )
   }
 
-  parseForExport = (clicks) => {
+  prepareCsv = clicks => {
+    if (this.state.exporting) {
+      return;
+    }
     let newList = []
-    clicks.forEach(item => {
-      const newItem = {
-        date_clicked: item.clickDate,
-        offer: item.offer,
-        name: item.firstName + " " + item.lastName,
-        phone: item.phone,
-        email: item.email,
-        company: item.company,
-        title: item.title
-      }
-      newList.push(newItem)
+    const attendeeClickPromises = clicks.map(click => client.getAttendee(click.userId)
+      .then(attendee => ({...click, ...attendee}))
+      .catch(err => click))
+
+    Promise.all(attendeeClickPromises).then(clicks => {
+      // Build CSV and trigger download...
+      clicks.forEach(item => {
+        const newItem = {
+          date_clicked: item.clickDate,
+          offer: item.offer,
+          name: item.firstName + " " + item.lastName,
+          phone: item.phone,
+          email: item.email,
+          company: item.company,
+          title: item.title
+        }
+        newList.push(newItem)
+      })
+      this.setState({exporting: true, exportList: newList})
+      setTimeout(()=>this.setState({exporting: false, newList: []}), 1000)
     })
-    return newList
   }
 
   filterClicks = (clicks, search) => {
