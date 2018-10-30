@@ -17,85 +17,62 @@
 import React, { Component } from 'react'
 import ReactNative, { TouchableOpacity, Text, View, Image, Dimensions, Linking, Platform } from 'react-native'
 import client, { Color } from '@doubledutch/rn-client'
-import Chevron from './Chevron'
+
+const aspectRatio = 1.6
 
 export default class Offers extends Component {
   constructor() {
     super()
     this.state = {
       renderText: false,
-      renderConfirm: false
+      renderConfirm: false,
+      aspectRatio: 1,
     }
   }
+  componentDidMount = () => {
+    Image.getSize(this.props.image, (width, height) => {
+      let aspectRatio = width/height
+      this.setState({aspectRatio})
+    })
+  }
   render() {
-    const { image, title, des } = this.props
-    var rotate = {}
-    if (this.state.renderText) {
-      var rotate = { transform: [
-        { rotate: '180deg'}
-      ]}
-    }
-    return(
-      <View style={this.props.isLast && !this.state.renderText ? s.shadow : null}>
-        <View style={s.border}/>
-        <TouchableOpacity style={s.container} onPress={this.handleOpen}>
-        <Image source={{uri: image}} style={s.dimensionStyle} alt="Image">
-          <View style={{backgroundColor: "rgba(52, 52, 52, 0.7)", flex: 1, justifyContent: 'center', padding: 10}}>
-            <Text style={s.title}>{title}</Text>
-            <View style={s.buttonBox}>
-              <Text style={s.description}>Show {this.state.renderText ? "less" : "more"}</Text>
-              {this.showIcon(rotate)}
-            </View>
+    const { image, des, title } = this.props
+    const {aspectRatio} = this.state
+    return (
+      <View style={s.offerCard}>
+        <View style={s.offerCardRounded}>
+          <View style={s.container}>
+            <Image style={[s.dimensionStyle, {aspectRatio}]} source={{ uri: image }} alt="" />
           </View>
-        </Image>
-        </TouchableOpacity>
-        {this.renderText(des)}
+          {this.renderBottom(title, des)}
+        </View>
       </View>
     )
   }
 
-  showIcon = (rotate) => {
-    if (Platform.OS === "ios") {
+
+  renderBottom = (title, des) => {
+    if (this.state.renderConfirm){
+        return (
+          <View style={s.textBox}>
+            <View style={s.centerBox}>
+              <Text style={s.title1}>Thank you!</Text>
+              <Text style={s.description}>One of our team members will be reaching out.</Text>
+            </View>
+          </View>
+        )
+    } 
+    else {
       return (
-        <Chevron style={rotate}/>
+        <View style={s.textBox}>
+          <Text style={s.title1}>{title}</Text>
+          <Text style={s.description}>{des}</Text>
+          <TouchableOpacity onPress={this.handleClick} style={s.footerButton}>
+            <Text style={s.footerButtonText}>I&apos;m Interested</Text>
+          </TouchableOpacity>
+        </View>
       )
     }
-  }
-
-  renderText = (des) => {
-    if (this.state.renderText) {
-      if (this.state.renderConfirm === false) {
-        return (
-          <View style={[s.textBox, s.shadow2]}>
-            <Text style={s.title2}>{des}</Text>
-              <TouchableOpacity onPress={this.handleClick} style={{marginTop:0}}>
-                <View style={s.footerButton}>
-                  <Text style={s.footerButtonText}>I&apos;m Interested</Text>
-                </View>
-              </TouchableOpacity>
-          </View>
-        )
-      }
-      else{
-        return (
-          <View style={[s.textBox, s.shadow2]}>
-            <Text style={s.title1}>Thank you!</Text>
-            <Text style={s.title2}>One of our team members will be reaching out.</Text>     
-              <TouchableOpacity onPress={this.handleClose} style={{marginTop:0}}>
-                <View style={s.footerButton}>
-                  <Text style={s.footerButtonText}>Close</Text>
-                </View>
-              </TouchableOpacity>  
-          </View>
-        )
-      }
-    }
-  }
-
-  handleOpen = () => {
-    var currentText = this.state.renderText
-    this.setState({renderText: !currentText})
-    if (!currentText && this.props.isLast) this.props.scrolltoBottom()
   }
 
   handleClick = () => {
@@ -104,125 +81,121 @@ export default class Offers extends Component {
     this.setState({renderConfirm: !currentText})
   }
 
-  handleClose = () => {
-    this.setState({renderConfirm: false, renderText: false})
-  }
 }
+
+
+
     
 const s = ReactNative.StyleSheet.create({
-  shadow: {
-    shadowColor: 'gray',
-    shadowOffset: { height: 10 },
-    shadowOpacity: 0.75,
+  container: {
+    backgroundColor: '#FFFFFF',
   },
-  shadow2: {
-    marginBottom: 10,
-    shadowColor: 'gray',
-    shadowOffset: { height: 10 },
-    shadowOpacity: 0.75,
+  pageContainer: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
   },
-  container : {
-    padding: 0, 
-    borderColor:'#D8D8D8',
-    borderBottomWidth:0, 
-    backgroundColor: "#FFFFFF"
+  offerCard: {
+    margin: 10,
+    borderRadius: 10,
+    shadowOffset: { height: 5, width: 0 },
+    shadowColor: '#000000',
+    shadowOpacity: 0.12,
+    shadowRadius: 5,
+    elevation: 5,
   },
-  dimensionStyle : {
-    flexDirection: "row", 
-    flexGrow: 1,
-    aspectRatio: 1.6,
-    justifyContent: 'center',
-    resizeMode: 'cover',
-    alignItems: 'flex-end'
+  offerCardRounded: {
+    borderRadius: 10,
+    overflow: 'hidden',
   },
-  main: {
-    padding: 0,
-    borderColor:'#D8D8D8',
-    borderBottomWidth:1,
-    borderTopWidth:1,
-    backgroundColor: 'white',
-    flexDirection: 'row'
+  dimensionStyle: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexGrow: 1
+  },
+  overlay: {
+    alignItems: 'flex-start',
+    backgroundColor: 'rgba(52, 52, 52, 0.7)',
+    padding: 10,
   },
   buttonBox: {
     flexDirection: 'row',
     height: 25,
   },
-  main2: {
-    padding: 0,
-    marginTop: 10,
-    borderColor:'#D8D8D8',
-    borderBottomWidth:1,
-    borderTopWidth:1,
-    backgroundColor: 'white',
-    flexDirection: 'row'
+  centerBox: {
+    paddingBottom: 10,
   },
-  image: {
-    margin: 10,
-    height: 90,
-    width: 90,
-    resizeMode: 'contain'
-  },
-  info: {
-    marginTop: 15,
-    marginLeft: 10,
-    marginRight: 15,
-    marginBottom: 15,
-    flexDirection: 'column',
-    flex: 1,
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
-    alignContent: 'center'
+    display: 'flex',
+    marginTop: 5,
+    borderColor: '#c9d3de',
+    borderWidth: 1,
+    backgroundColor: '#f2f6fb',
+    padding: 10,
+    borderRadius: 8,
+  },
+  conciergeInfoBox: {
+    marginLeft: 10,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    display: 'flex',
+    flex: 1,
   },
   title: {
     fontSize: 18,
     marginBottom: 5,
-    color: "white",
-    fontWeight: "bold"
-
+    color: 'white',
+    fontWeight: 'bold',
   },
   title1: {
     fontSize: 18,
     marginBottom: 5,
-    fontWeight: "bold",
-    textAlign: 'center'
+    fontWeight: 'bold',
+    marginLeft: 0,
+    color: '#303030',
   },
-
   title2: {
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 5,
-    textAlign: 'center'
+    color: '#636363',
   },
   description: {
     fontSize: 16,
     marginBottom: 5,
-    color: "white",
+    color: '#303030',
   },
   textBox: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 20,
-    margin: 0,
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white'
+    padding: 20,
+    alignItems: 'flex-start',
+    backgroundColor: 'white',
+    display: 'flex',
+    flex: 1,
   },
-  border : {
-    borderColor:'#D8D8D8',
-    borderBottomWidth:1, 
-    height: 0, 
-    flex: 1, 
-    backgroundColor: "#E8E8E8"
+  border: {
+    borderColor: '#D8D8D8',
+    borderBottomWidth: 1,
+    height: 0,
+    flex: 1,
+    backgroundColor: '#E8E8E8',
   },
-  footerButton : {
+  footerButton: {
     backgroundColor: client.primaryColor,
-    borderRadius:4,
-    padding:10, 
-    margin: 20, 
+    borderRadius: 20,
+    paddingVertical: 15,
+    marginTop: 10,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  footerButtonText : {
-    color:'white',
-    textAlign:'center',
-    fontSize:16
-  }
+  footerButtonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 
 
 })
