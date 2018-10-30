@@ -26,23 +26,23 @@ export default class Offers extends Component {
     this.state = {
       renderText: false,
       renderConfirm: false,
-      height: 0,
-      width: 0
+      aspectRatio: 1,
     }
   }
   componentDidMount = () => {
     Image.getSize(this.props.image, (width, height) => {
-      this.setState({width, height})
+      let aspectRatio = width/height
+      this.setState({aspectRatio})
     })
   }
   render() {
     const { image, des, title } = this.props
-    const {height, width} = this.state
+    const {aspectRatio} = this.state
     return (
       <View style={s.offerCard}>
         <View style={s.offerCardRounded}>
           <View style={s.container}>
-            <Image style={[s.dimensionStyle, {height, width}]} source={{ uri: image }} alt="" />
+            <Image style={[s.dimensionStyle, {aspectRatio}]} source={{ uri: image }} alt="" />
           </View>
           {this.renderBottom(title, des)}
         </View>
@@ -89,8 +89,6 @@ export default class Offers extends Component {
 const s = ReactNative.StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-    alignItems: "center",
-    justifyContent: "center"
   },
   pageContainer: {
     flex: 1,
@@ -111,7 +109,8 @@ const s = ReactNative.StyleSheet.create({
   },
   dimensionStyle: {
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    flexGrow: 1
   },
   overlay: {
     alignItems: 'flex-start',
