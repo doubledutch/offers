@@ -89,6 +89,8 @@ export default class Offers extends Component {
 const s = ReactNative.StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
+    alignItems: "center",
+    justifyContent: "center"
   },
   pageContainer: {
     flex: 1,
