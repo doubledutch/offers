@@ -81,6 +81,7 @@ export default class HomeView extends Component {
   sendData = (title)=> {
     fbc.database.private.adminableUserRef("click").push({
       offer: title,
+      user : client.currentUser,
       firstName: client.currentUser.firstName || null,
       lastName: client.currentUser.lastName || null,
       email: client.currentUser.email || null,

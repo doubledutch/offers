@@ -21,6 +21,10 @@ h2 {
   width: 40px;
 }
 
+.headerMargin {
+  margin-right: 20px;
+}
+
 .Modal {
   position: absolute;
   width: 600px;
