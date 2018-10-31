@@ -18,8 +18,6 @@ import React, { Component } from 'react'
 import './App.css'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import reordericon from './icons/reordericon.png'
-import pencil from './icons/pencil.png'
-import trashcan from './icons/trashcan.png'
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -118,7 +116,7 @@ class SortableTable extends Component {
               {
                 this.props.items.map((item, i) => 
                 (
-                  <div>
+                  <div key={i}>
                     {this.renderCell(provided, snapshot, item, i)}
                   </div>
                 ))
@@ -132,8 +130,6 @@ class SortableTable extends Component {
       </div>
     )
   }
-
 }
-
 
 export default SortableTable
