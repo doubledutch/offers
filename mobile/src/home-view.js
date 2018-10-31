@@ -15,9 +15,7 @@
  */
 
 import React, { Component } from 'react'
-import ReactNative, {
-  Platform, Text, TextInput, View, ScrollView, StyleSheet, Dimensions
-} from 'react-native'
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
 import client, { TitleBar } from '@doubledutch/rn-client'
 import Offers from './Offers'
 import FirebaseConnector from '@doubledutch/firebase-connector'
