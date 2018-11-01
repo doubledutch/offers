@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
 import Modal  from 'react-modal'
-import {TextInput} from '@doubledutch/react-components'
 
 export default class FormView extends Component {
   constructor(props) {
@@ -105,7 +104,7 @@ export default class FormView extends Component {
         ariaHideApp={false}
         isOpen={this.props.showModal}
         onAfterOpen={this.props.afterOpenModal}
-        onRequestClose={this.props.showModal}
+        onRequestClose={this.props.showModalFunction}
         contentLabel="Modal"
         className="Modal"
         overlayClassName="Overlay"
@@ -119,7 +118,4 @@ export default class FormView extends Component {
       </Modal>
     )
   }
-
-
-
 }

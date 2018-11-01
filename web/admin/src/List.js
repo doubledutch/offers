@@ -17,11 +17,8 @@
 import React, { Component } from 'react'
 import './App.css'
 
-class List extends Component {
+export default class List extends Component {
     listData = () => {
-      const style = {
-        backgroundColor: '#DEDEDE'
-      }
         if (this.props.listData){
             const clicks = this.props.listData;
             const listItems = clicks.map((click) =>
@@ -45,10 +42,6 @@ class List extends Component {
 
 
     render(){
-        let total = 0
-        if (this.props.listData) {
-            total = this.props.listData.length
-        }
         return(
             <span className="listBox">
                 <span className="headerItemBox">
@@ -65,6 +58,3 @@ class List extends Component {
     }
 
 }
-
-
-export default List

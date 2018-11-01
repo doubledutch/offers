@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import './App.css'
 import client from '@doubledutch/admin-client'
 import List from './List'
 import SortableTable from './SortableTable'
 import FormView from './FormView'
-import FirebaseConnector from '@doubledutch/firebase-connector'
-import { CSVLink, CSVDownload } from 'react-csv';
+import {provideFirebaseConnectorToReactComponent} from '@doubledutch/firebase-connector'
+import { CSVDownload } from 'react-csv';
 import '@doubledutch/react-components/lib/base.css'
-const fbc = FirebaseConnector(client, 'Offers')
-fbc.initializeAppWithSimpleBackend()
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -34,24 +32,26 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 
-export default class App extends Component {
-  constructor() {
-    super()
+class App extends PureComponent {
+  constructor(props) {
+    super(props)
     this.state = { 
       clicks: [],
       cells: [],
-      newCell: {type:"Offer",
-      image:"",
-      title:"",
-      des:""},
+      newCell: {
+        type: "Offer",
+        image: "",
+        title: "",
+        des: ""
+      },
       edit: false,
       index: 0,
       showModal: false,
       search: "",
       exportList: [],
       exporting: false
-     }
-    this.signin = fbc.signinAdmin()
+    }
+    this.signin = props.fbc.signinAdmin()
       .then(user => this.user = user)
       .catch(err => console.error(err))
   }
@@ -71,11 +71,12 @@ export default class App extends Component {
       )
     }
     this.setState({ cells });
-    fbc.database.public.adminRef('offers').set({"cells": cells})
+    this.props.fbc.database.public.adminRef('offers').set({"cells": cells})
   
   }
 
   componentDidMount() {
+    const {fbc} = this.props
     this.signin.then(() => {
       const adminableRef = fbc.database.private.adminableUsersRef()
       const cellsRef = fbc.database.public.adminRef('offers') 
@@ -240,7 +241,7 @@ export default class App extends Component {
     publishCell.image = publishCell.image.trim()
     cells[this.state.index] = publishCell
     this.setState({cells, newCell: blankCell, showModal: false, edit: false})
-    fbc.database.public.adminRef('offers').set({"cells": cells})
+    this.props.fbc.database.public.adminRef('offers').set({"cells": cells})
   }
 
   addNewCell = () => {
@@ -251,7 +252,7 @@ export default class App extends Component {
     publishCell.des = publishCell.des.trim()
     publishCell.image = publishCell.image.trim()
     cells.push(publishCell)
-    fbc.database.public.adminRef('offers').set({"cells": cells})
+    this.props.fbc.database.public.adminRef('offers').set({"cells": cells})
     this.setState({cells, newCell: blankCell, showModal: false})
   }
 
@@ -260,13 +261,12 @@ export default class App extends Component {
       var cells = this.state.cells
       cells.splice(i, 1)
       this.setState({cells})
-      fbc.database.public.adminRef('offers').set({"cells": cells})
+      this.props.fbc.database.public.adminRef('offers').set({"cells": cells})
     }
-
   }
-
-  
 }
+
+export default provideFirebaseConnectorToReactComponent(client, 'Offers', (props, fbc) => <App {...props} fbc={fbc} />, PureComponent)
 
 function sortUsers(a,b) {
   const dateA = new Date(a.clickUTC).getTime()
@@ -274,8 +274,9 @@ function sortUsers(a,b) {
   return dateB - dateA
 }
 
-const newCell =  { type:"Offer",
-image:"",
-title:"",
-des:"" 
+const newCell = {
+  type:"Offer",
+  image:"",
+  title:"",
+  des:"" 
 }
