@@ -15,26 +15,22 @@
  */
 
 import React, { Component } from 'react'
-import ReactNative, { TouchableOpacity, Text, View, Image, Dimensions, Linking, Platform } from 'react-native'
-import client, { Color } from '@doubledutch/rn-client'
-
-const aspectRatio = 1.6
+import { StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native'
 
 export default class Offers extends Component {
-  constructor() {
-    super()
-    this.state = {
-      renderText: false,
-      renderConfirm: false,
-      aspectRatio: 1,
-    }
+  state = {
+    renderText: false,
+    renderConfirm: false,
+    aspectRatio: 1,
   }
+
   componentDidMount = () => {
     Image.getSize(this.props.image, (width, height) => {
       let aspectRatio = width/height
       this.setState({aspectRatio})
     })
   }
+
   render() {
     const { image, des, title } = this.props
     const {aspectRatio} = this.state
@@ -50,7 +46,6 @@ export default class Offers extends Component {
     )
   }
 
-
   renderBottom = (title, des) => {
     if (this.state.renderConfirm){
         return (
@@ -63,11 +58,12 @@ export default class Offers extends Component {
         )
     } 
     else {
+      const {primaryColor} = this.props
       return (
         <View style={s.textBox}>
           <Text style={s.title1}>{title}</Text>
           <Text style={s.description}>{des}</Text>
-          <TouchableOpacity onPress={this.handleClick} style={s.footerButton}>
+          <TouchableOpacity onPress={this.handleClick} style={[s.footerButton, {backgroundColor: primaryColor}]}>
             <Text style={s.footerButtonText}>I&apos;m Interested</Text>
           </TouchableOpacity>
         </View>
@@ -80,13 +76,9 @@ export default class Offers extends Component {
     var currentText = this.state.renderConfirm
     this.setState({renderConfirm: !currentText})
   }
-
 }
-
-
-
-    
-const s = ReactNative.StyleSheet.create({
+ 
+const s = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
   },
@@ -181,7 +173,6 @@ const s = ReactNative.StyleSheet.create({
     backgroundColor: '#E8E8E8',
   },
   footerButton: {
-    backgroundColor: client.primaryColor,
     borderRadius: 20,
     paddingVertical: 15,
     marginTop: 10,
@@ -196,6 +187,4 @@ const s = ReactNative.StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-
-
 })
