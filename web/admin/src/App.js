@@ -16,13 +16,16 @@
 
 import React, { PureComponent } from 'react'
 import './App.css'
-import client from '@doubledutch/admin-client'
 import List from './List'
 import SortableTable from './SortableTable'
 import FormView from './FormView'
+import client, {translate as t, useStrings} from '@doubledutch/admin-client'
+import i18n from './i18n'
 import {provideFirebaseConnectorToReactComponent} from '@doubledutch/firebase-connector'
 import { CSVDownload } from 'react-csv';
 import '@doubledutch/react-components/lib/base.css'
+
+useStrings(i18n)
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -134,8 +137,8 @@ class App extends PureComponent {
         />
         <div className="containerSmall">
           <div className="headerBox">
-            <h1 className="headerMargin">Offers</h1>
-            <button className="borderButton" onClick={this.showModal} disabled={this.state.showModal}>Add Offer</button>
+            <h1 className="headerMargin">{t("offers")}</h1>
+            <button className="borderButton" onClick={this.showModal} disabled={this.state.showModal}>{t("add")}</button>
           </div>
           <SortableTable
             items = {this.state.cells}
@@ -148,18 +151,17 @@ class App extends PureComponent {
         </div>
         <div className="containerSmall">
           <div className="headerBox">
-            <h1>Attendees</h1>
+            <h1>{t("attendees")}</h1>
             <div style={{flex: 1}}/>
-            <input className="searchBox" value={this.state.search} onChange={this.searchTable} placeholder={"Search"}/>
+            <input className="searchBox" value={this.state.search} onChange={this.searchTable} placeholder={t("search")}/>
           </div>
           <List
             listData = {sortedClicks}
-            listName = {"Total Clicks"}
             cells = {this.state.cells}
           />
           <div className="headerBox">
             <div style={{flex: 1}}/>
-            <button className="borderButton" onClick={()=>this.prepareCsv(sortedClicks)}>Export List of Attendees</button>
+            <button className="borderButton" onClick={()=>this.prepareCsv(sortedClicks)}>{t("export")}</button>
             {this.state.exporting ? <CSVDownload data={this.state.exportList} target="_blank" /> : null}
           </div>
         </div>
@@ -257,7 +259,7 @@ class App extends PureComponent {
   }
 
   deleteCell = (i) => {
-    if (window.confirm("Are you sure you want to delete this offer?")) {
+    if (window.confirm(t("confirm_delete"))) {
       var cells = this.state.cells
       cells.splice(i, 1)
       this.setState({cells})

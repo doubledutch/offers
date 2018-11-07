@@ -16,6 +16,7 @@
 
 import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native'
+import { translate as t } from '@doubledutch/rn-client'
 
 export default class Offers extends Component {
   state = {
@@ -51,8 +52,8 @@ export default class Offers extends Component {
         return (
           <View style={s.textBox}>
             <View style={s.centerBox}>
-              <Text style={s.title1}>Thank you!</Text>
-              <Text style={s.description}>One of our team members will be reaching out.</Text>
+              <Text style={s.title1}>{t("thanks")}</Text>
+              <Text style={s.description}>{t("thanks_des")}</Text>
             </View>
           </View>
         )
@@ -64,7 +65,7 @@ export default class Offers extends Component {
           <Text style={s.title1}>{title}</Text>
           <Text style={s.description}>{des}</Text>
           <TouchableOpacity onPress={this.handleClick} style={[s.footerButton, {backgroundColor: primaryColor}]}>
-            <Text style={s.footerButtonText}>I&apos;m Interested</Text>
+            <Text style={s.footerButtonText}>{t("interest")}</Text>
           </TouchableOpacity>
         </View>
       )

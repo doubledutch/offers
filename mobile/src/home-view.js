@@ -16,9 +16,12 @@
 
 import React, { PureComponent } from 'react'
 import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
-import client, { TitleBar } from '@doubledutch/rn-client'
+import client, { TitleBar, translate as t, useStrings } from '@doubledutch/rn-client'
 import Offers from './Offers'
+import i18n from './i18n'
 import {provideFirebaseConnectorToReactComponent} from '@doubledutch/firebase-connector'
+
+useStrings(i18n)
 
 class HomeView extends PureComponent {
   constructor(props) {
@@ -53,7 +56,7 @@ class HomeView extends PureComponent {
     if (!currentUser || !primaryColor) return null
     return (
       <View style={{flex: 1}}>
-        <TitleBar title="Offers" client={client} signin={this.signin} />
+        <TitleBar title={t("offers")} client={client} signin={this.signin} />
         <ScrollView style={s.container} 
         ref={(scrollView) => {this.scrollView = scrollView}}
         onContentSizeChange={(contentWidth, contentHeight)=>{
