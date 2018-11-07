@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import {translate as t, useStrings} from '@doubledutch/admin-client'
 import Modal  from 'react-modal'
 
 export default class FormView extends Component {
@@ -30,20 +31,20 @@ export default class FormView extends Component {
         <div>
           <div className="topForm">
             <label className="boxTitle">
-              Offer Name
+              {t("offer_name")}
               <input
               className="box"
               name="title"
               type="text"
-              placeholder="Name"
+              placeholder={t("name")}
               required
               maxLength={50}
               value={this.props.newCell.title}
               onChange={this.handleInputChange} />
-              {(this.state.isError && this.props.newCell.title.trim().length === 0) && <p className="errorText">*Please enter a valid title</p>}
+              {(this.state.isError && this.props.newCell.title.trim().length === 0) && <p className="errorText">{t("valid_title")}</p>}
             </label>
             <label className="boxTitle">
-              Image URL
+              {t("image_url")}
               <input
               className="box"
               name="image"
@@ -52,30 +53,30 @@ export default class FormView extends Component {
               placeholder="https://www.offer.com/image"
               value={this.props.newCell.image}
               onChange={this.handleInputChange} />
-              {(this.state.isError && this.props.newCell.image.trim().length === 0) && <p className="errorText">*Please enter a valid url</p>}
+              {(this.state.isError && this.props.newCell.image.trim().length === 0) && <p className="errorText">{t("valid_url")}</p>}
             </label>
           </div>
           <div className="bottomForm">
             <label className="boxTitleWide">
-              Offer Description
+              {t("description")}
               <textarea
               className="wideBox"
               name="des"
               type="text"
               required
               maxLength={1000}
-              placeholder="Ex. Join us for a free security webinar!"
+              placeholder={t("example")}
               value={this.props.newCell.des}
               onChange={this.handleInputChange} />
-              {(this.state.isError && this.props.newCell.des.trim().length === 0) && <p className="errorText">*Please enter a valid description</p>}
+              {(this.state.isError && this.props.newCell.des.trim().length === 0) && <p className="errorText">{t("valid_description")}</p>}
             </label>
           </div>
         </div>
         <div className="modalBottom">
-          <button className="formButton" onClick={this.cancelSave}>Cancel</button>
+          <button className="formButton" onClick={this.cancelSave}>{t("cancel")}</button>
           {this.state.isError
-          ? <button className="formButton">Retry</button>
-          : <input type="submit" value={this.props.edit ? "Save Offer" : "Add Offer"} className="formButton"/>
+          ? <button className="formButton">{t("retry")}</button>
+          : <input type="submit" value={this.props.edit ? t("save") : t("add")} className="formButton"/>
           }
         </div>
       </form>
@@ -110,7 +111,7 @@ export default class FormView extends Component {
         overlayClassName="Overlay"
       >
         <div className="modalTop">
-          <h1 className="modalTitle">{this.props.edit ? "Edit " :"New "}Offer</h1>
+          <h1 className="modalTitle">{this.props.edit ? t("edit_offer") : t("new_offer")}</h1>
           <div style={{flex:1 }}/>
           <button className="closeModalButton" onClick={this.cancelSave}>X</button>
         </div>
