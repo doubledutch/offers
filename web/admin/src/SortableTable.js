@@ -17,6 +17,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import {translate as t, useStrings} from '@doubledutch/admin-client'
 import reordericon from './icons/reordericon.png'
 
 // a little function to help us with reordering the result
@@ -26,19 +27,6 @@ const reorder = (list, startIndex, endIndex) => {
   result.splice(endIndex, 0, removed);
   return result;
 };
-
-const getItemStyle = (draggableStyle, isDragging) => ({
-  userSelect: 'none',
-  display: "flex",
-  flexFlow: "row wrap",
-  margin: `0px`,
-  height: "40px",
-  textAlign: "center",
-  // borderRadius: 4,
-  borderBottom: '1px solid #D1D1D1',
-  background: isDragging ? '#F6F8FB' : 'white',
-  ...draggableStyle,
-});
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? 'white' : 'white',
   padding: '0px',
@@ -97,8 +85,8 @@ class SortableTable extends Component {
                   {item && <p className="cellTitle">{item.title}</p>}
                   {item && <p className="cellDes">{item.des}</p>}
                   <div style={{flex: 1}} />
-                  <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleEdit(i)}>Edit</button>
-                  <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleDelete(i)}>Remove</button>
+                  <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleEdit(i)}>{t("edit")}</button>
+                  <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleDelete(i)}>{t("remove")}</button>
                 </div>
               </div>
               {provided.placeholder}
@@ -113,8 +101,8 @@ class SortableTable extends Component {
     return (
       <div>
         <span className="headerItemBox2">
-          <p>Name</p>
-          <p>Description</p>
+          <p>{t("name")}</p>
+          <p>{t("description")}</p>
         </span>
         <span className="previewContainer">
           <DragDropContext onDragEnd={this.props.onDragEnd} >
