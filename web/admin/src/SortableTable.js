@@ -69,31 +69,42 @@ class SortableTable extends Component {
     }); 
   }
   
-  renderCell = (provided, snapshot, item, i) => {
+  renderCell = (item, i) => {
     return (
-      <Draggable key={i} draggableId={i}>
-        {(provided, snapshot) => (
-          <div>
-            <div
-              ref={provided.innerRef}
-              style={getItemStyle(
-                provided.draggableStyle,
-                snapshot.isDragging
-                )}
-              {...provided.dragHandleProps}
-            >
-              <div className="preview-cell__container">
-                <img className="dragButton" name={i}  value="true" src={reordericon} alt="move" />
-                {item && <p className="cellTitle">{item.title}</p>}
-                {item && <p className="cellDes">{item.des}</p>}
-                <div style={{flex: 1}} />
-                <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleEdit(i)}>Edit</button>
-                <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleDelete(i)}>Remove</button>
+      <Draggable draggableId={item.title + i} index={i}>
+        {(provided, snapshot) => {
+          const style = {
+            userSelect: 'none',
+            display: "flex",
+            flexFlow: "row wrap",
+            margin: `0px`,
+            height: "40px",
+            textAlign: "center",
+            borderBottom: '1px solid #D1D1D1',
+            backgroundColor: snapshot.isDragging ? '#F6F8FB' : 'white',
+            ...provided.draggableProps.style,
+          };
+          return (
+            <div>
+              <div
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                style={style}
+              >
+                <div className="preview-cell__container">
+                  <img className="dragButton" name={i}  value="true" src={reordericon} alt="move" />
+                  {item && <p className="cellTitle">{item.title}</p>}
+                  {item && <p className="cellDes">{item.des}</p>}
+                  <div style={{flex: 1}} />
+                  <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleEdit(i)}>Edit</button>
+                  <button className="borderlessButton" name={i}  value="true" onClick={() => this.props.handleDelete(i)}>Remove</button>
+                </div>
               </div>
-            </div>
               {provided.placeholder}
             </div>
-          )}
+            )
+          }}
       </Draggable>
     )
   }
@@ -106,23 +117,24 @@ class SortableTable extends Component {
           <p>Description</p>
         </span>
         <span className="previewContainer">
-          <DragDropContext onDragEnd={this.props.onDragEnd}>
-          <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}
-              >
-              {
-                this.props.items.map((item, i) => 
-                (
-                  <div key={i}>
-                    {this.renderCell(provided, snapshot, item, i)}
-                  </div>
-                ))
-              }
-              {provided.placeholder}
-              </div>
+          <DragDropContext onDragEnd={this.props.onDragEnd} >
+            <Droppable droppableId="droppable">
+              {(provided, snapshot) => (
+                <div
+                  ref={provided.innerRef}
+                  style={getListStyle(snapshot.isDraggingOver)}
+                  {...provided.droppableProps}
+                >
+                {
+                  this.props.items.map((item, i) => 
+                  (
+                    <div>
+                      {this.renderCell(item, i)}
+                    </div>
+                  ))
+                }
+                {provided.placeholder}
+                </div>
               )}
             </Droppable>
           </DragDropContext>  
