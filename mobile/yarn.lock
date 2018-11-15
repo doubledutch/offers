@@ -16,9 +16,16 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+<<<<<<< HEAD
 "@doubledutch/base-client@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@doubledutch/base-client/-/base-client-4.1.0.tgz#ab32dcd7e1f60689b40d7dd977aa9d6a08db2f40"
+=======
+"@doubledutch/base-client@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@doubledutch/base-client/-/base-client-4.2.0.tgz#3a9c96cd7f3d006692c78c39f2e9da21bf3cffd0"
+  integrity sha512-KU49gdwkA97axemiNojJFiGm8zxRVk0wHuimn8zx0xfGKH0wUIpoGEJhdcBCeflc21wAtPPheVZrbjtBLuHWiQ==
+>>>>>>> 4d93615150c4e283167b9fad3d8fd0192cd2a252
 
 "@doubledutch/firebase-connector@^4.1.0":
   version "4.1.0"
@@ -28,11 +35,18 @@
     firebase "^5.4.2"
     jest "^22.4.3"
 
+<<<<<<< HEAD
 "@doubledutch/rn-client@^4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@doubledutch/rn-client/-/rn-client-4.2.1.tgz#4ccf39ce64d1ca322b0224eb424795084ec30cad"
+=======
+"@doubledutch/rn-client@^4.2.3":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/@doubledutch/rn-client/-/rn-client-4.2.3.tgz#5a8e81d58409d619ddedd237c6db6610b0e423cf"
+  integrity sha512-1RvJbeTBeN/Z9NUUU16U9GzDtqKhX6VGla13EQcgTcHWCibvEQ5ibOf1YuHRk5/edMPm3LApXqLm6jI+WZrhPg==
+>>>>>>> 4d93615150c4e283167b9fad3d8fd0192cd2a252
   dependencies:
-    "@doubledutch/base-client" "^4.1.0"
+    "@doubledutch/base-client" "^4.2.0"
     react "16.0.0-alpha.12"
     react-native "0.46.4"
     react-native-fetch-blob "0.10.8"
@@ -735,7 +749,7 @@ babel-plugin-transform-es2015-modules-amd@^6.22.0, babel-plugin-transform-es2015
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-plugin-transform-es2015-modules-commonjs@6.x, babel-plugin-transform-es2015-modules-commonjs@^6.23.0, babel-plugin-transform-es2015-modules-commonjs@^6.24.1, babel-plugin-transform-es2015-modules-commonjs@^6.5.0, babel-plugin-transform-es2015-modules-commonjs@^6.7.0, babel-plugin-transform-es2015-modules-commonjs@^6.7.4, babel-plugin-transform-es2015-modules-commonjs@^6.8.0:
+babel-plugin-transform-es2015-modules-commonjs@6.x, babel-plugin-transform-es2015-modules-commonjs@^6.23.0, babel-plugin-transform-es2015-modules-commonjs@^6.24.1, babel-plugin-transform-es2015-modules-commonjs@^6.5.0, babel-plugin-transform-es2015-modules-commonjs@^6.7.0, babel-plugin-transform-es2015-modules-commonjs@^6.8.0:
   version "6.26.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-modules-commonjs/-/babel-plugin-transform-es2015-modules-commonjs-6.26.2.tgz#58a793863a9e7ca870bdc5a881117ffac27db6f3"
   dependencies:
@@ -949,6 +963,7 @@ babel-preset-env@^1.6.1:
     invariant "^2.2.2"
     semver "^5.3.0"
 
+<<<<<<< HEAD
 babel-preset-es2015-node6@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/babel-preset-es2015-node6/-/babel-preset-es2015-node6-0.4.0.tgz#f8893f81b6533747924c657348867bd63b4f9dc2"
@@ -958,6 +973,8 @@ babel-preset-es2015-node6@^0.4.0:
     babel-plugin-transform-es2015-modules-commonjs "^6.7.4"
     babel-plugin-transform-es2015-parameters "^6.8.0"
 
+=======
+>>>>>>> 4d93615150c4e283167b9fad3d8fd0192cd2a252
 babel-preset-es2015-node@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/babel-preset-es2015-node/-/babel-preset-es2015-node-6.1.1.tgz#60b23157024b0cfebf3a63554cb05ee035b4e55f"
@@ -1047,6 +1064,7 @@ babel-preset-jest@^22.4.4:
     babel-plugin-jest-hoist "^22.4.4"
     babel-plugin-syntax-object-rest-spread "^6.13.0"
 
+<<<<<<< HEAD
 babel-preset-react-native@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/babel-preset-react-native/-/babel-preset-react-native-2.0.0.tgz#c26c7066c7399df30926fa03c012ef87f2cce5b7"
@@ -1081,6 +1099,8 @@ babel-preset-react-native@2.0.0:
     babel-plugin-transform-regenerator "^6.5.0"
     react-transform-hmr "^1.0.4"
 
+=======
+>>>>>>> 4d93615150c4e283167b9fad3d8fd0192cd2a252
 babel-preset-react-native@^1.9.1, babel-preset-react-native@^1.9.2:
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/babel-preset-react-native/-/babel-preset-react-native-1.9.2.tgz#b22addd2e355ff3b39671b79be807e52dfa145f2"
@@ -1793,6 +1813,7 @@ data-urls@^1.0.0:
 dateformat@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.2.0.tgz#4065e2013cf9fb916ddfd82efb506ad4c6769062"
+<<<<<<< HEAD
 
 dd-rn-packager@~0.46.8:
   version "0.46.8"
@@ -1884,6 +1905,8 @@ dd-rn-packager@~0.46.8:
     xpipe "^1.0.5"
     xtend ">=4.0.0 <4.1.0-0"
     yargs "^6.4.0"
+=======
+>>>>>>> 4d93615150c4e283167b9fad3d8fd0192cd2a252
 
 debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
@@ -3243,10 +3266,13 @@ jest-diff@^22.4.0, jest-diff@^22.4.3:
     jest-get-type "^22.4.3"
     pretty-format "^22.4.3"
 
+<<<<<<< HEAD
 jest-docblock@20.1.0-echo.1:
   version "20.1.0-echo.1"
   resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-20.1.0-echo.1.tgz#be02f43ee019f97e6b83267c746ac7b40d290fe8"
 
+=======
+>>>>>>> 4d93615150c4e283167b9fad3d8fd0192cd2a252
 jest-docblock@^20.0.3:
   version "20.0.3"
   resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-20.0.3.tgz#17bea984342cc33d83c50fbe1545ea0efaa44712"
@@ -3287,6 +3313,7 @@ jest-haste-map@^20.0.4:
     sane "~1.6.0"
     worker-farm "^1.3.1"
 
+<<<<<<< HEAD
 jest-haste-map@^20.1.0-chi.1:
   version "20.1.0-echo.1"
   resolved "https://registry.yarnpkg.com/jest-haste-map/-/jest-haste-map-20.1.0-echo.1.tgz#6dfd0c97bb51a68a35dd98326e04f994157dce81"
@@ -3298,6 +3325,8 @@ jest-haste-map@^20.1.0-chi.1:
     sane "^2.0.0"
     worker-farm "^1.3.1"
 
+=======
+>>>>>>> 4d93615150c4e283167b9fad3d8fd0192cd2a252
 jest-haste-map@^22.4.2:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-haste-map/-/jest-haste-map-22.4.3.tgz#25842fa2ba350200767ac27f658d58b9d5c2e20b"

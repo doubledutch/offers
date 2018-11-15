@@ -123,7 +123,11 @@ class SortableTable extends Component {
                 }
                 {provided.placeholder}
                 </div>
+<<<<<<< HEAD
                 )}
+=======
+              )}
+>>>>>>> 4d93615150c4e283167b9fad3d8fd0192cd2a252
             </Droppable>
           </DragDropContext>  
         </span>
