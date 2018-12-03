@@ -1,5 +1,5 @@
-import enUS from './Offers.mobile.en-US.json'
-// import deDE from './Offers.mobile.de-DE.json'
+import enUS from './en-us/Offers.mobile.json'
+// import deDE from './de-de/Offers.mobile.json'
 
 export default (strings = {
   '': enUS,
