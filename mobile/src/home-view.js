@@ -51,11 +51,12 @@ class HomeView extends PureComponent {
   }
 
   render() {
+    const { suggestedTitle } = this.props
     const { currentUser, primaryColor } = this.state
     if (!currentUser || !primaryColor) return null
     return (
       <View style={{ flex: 1 }}>
-        <TitleBar title={t('offers')} client={client} signin={this.signin} />
+        <TitleBar title={suggestedTitle || t('offers')} client={client} signin={this.signin} />
         <ScrollView
           style={s.container}
           ref={scrollView => {
