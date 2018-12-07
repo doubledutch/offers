@@ -32,7 +32,7 @@ const getListStyle = isDraggingOver => ({
   padding: '0px',
   width: '100%',
   overflow: 'auto',
-  height: '250px',
+  height: '350px',
 })
 
 class SortableTable extends Component {
