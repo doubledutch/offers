@@ -117,10 +117,10 @@
     firebase "^5.4.2"
     jest "^22.4.3"
 
-"@doubledutch/rn-client@^4.2.3":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/@doubledutch/rn-client/-/rn-client-4.2.3.tgz#5a8e81d58409d619ddedd237c6db6610b0e423cf"
-  integrity sha512-1RvJbeTBeN/Z9NUUU16U9GzDtqKhX6VGla13EQcgTcHWCibvEQ5ibOf1YuHRk5/edMPm3LApXqLm6jI+WZrhPg==
+"@doubledutch/rn-client@^4.2.4":
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@doubledutch/rn-client/-/rn-client-4.2.4.tgz#da14e1cb5ece1342f780c3bfe0420a925df401ca"
+  integrity sha512-ce3PcDIXKY+brQ5Sg4hrGvmMJkG20iGRhGv5EpURB3S0o89ovupM0OH5RtuFKc9GPBd67EG1a43UuwdH5DJhww==
   dependencies:
     "@doubledutch/base-client" "^4.2.0"
     react "16.0.0-alpha.12"
