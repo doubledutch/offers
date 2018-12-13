@@ -18,5 +18,5 @@ import { AppRegistry } from 'react-native'
 import HomeView from './src/home-view'
 
 console.ignoredYellowBox = ['Warning: View.propTypes has been deprecated']
-AppRegistry.registerComponent('Offers', () => HomeView)
+AppRegistry.registerComponent('Offers2', () => HomeView)
 AppRegistry.registerComponent('section', () => HomeView)
