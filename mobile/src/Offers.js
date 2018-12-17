@@ -4,9 +4,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,19 +27,19 @@ export default class Offers extends Component {
 
   componentDidMount = () => {
     Image.getSize(this.props.image, (width, height) => {
-      let aspectRatio = width/height
-      this.setState({aspectRatio})
+      const aspectRatio = width / height
+      this.setState({ aspectRatio })
     })
   }
 
   render() {
     const { image, des, title } = this.props
-    const {aspectRatio} = this.state
+    const { aspectRatio } = this.state
     return (
       <View style={s.offerCard}>
         <View style={s.offerCardRounded}>
           <View style={s.container}>
-            <Image style={[s.dimensionStyle, {aspectRatio}]} source={{ uri: image }} alt="" />
+            <Image style={[s.dimensionStyle, { aspectRatio }]} source={{ uri: image }} alt="" />
           </View>
           {this.renderBottom(title, des)}
         </View>
@@ -48,37 +48,39 @@ export default class Offers extends Component {
   }
 
   renderBottom = (title, des) => {
-    if (this.state.renderConfirm){
-        return (
-          <View style={s.textBox}>
-            <View style={s.centerBox}>
-              <Text style={s.title1}>{t("thanks")}</Text>
-              <Text style={s.description}>{t("thanks_des")}</Text>
-            </View>
-          </View>
-        )
-    } 
-    else {
-      const {primaryColor} = this.props
+    if (this.state.renderConfirm) {
       return (
         <View style={s.textBox}>
-          <Text style={s.title1}>{title}</Text>
-          <Text style={s.description}>{des}</Text>
-          <TouchableOpacity onPress={this.handleClick} style={[s.footerButton, {backgroundColor: primaryColor}]}>
-            <Text style={s.footerButtonText}>{t("interest")}</Text>
-          </TouchableOpacity>
+          <View style={s.centerBox}>
+            <Text style={s.title1}>{t('thanks')}</Text>
+            <Text style={s.description}>{t('thanks_des')}</Text>
+          </View>
         </View>
       )
     }
+
+    const { primaryColor } = this.props
+    return (
+      <View style={s.textBox}>
+        <Text style={s.title1}>{title}</Text>
+        <Text style={s.description}>{des}</Text>
+        <TouchableOpacity
+          onPress={this.handleClick}
+          style={[s.footerButton, { backgroundColor: primaryColor }]}
+        >
+          <Text style={s.footerButtonText}>{t('interest')}</Text>
+        </TouchableOpacity>
+      </View>
+    )
   }
 
   handleClick = () => {
     this.props.sendData(this.props.title)
-    var currentText = this.state.renderConfirm
-    this.setState({renderConfirm: !currentText})
+    const currentText = this.state.renderConfirm
+    this.setState({ renderConfirm: !currentText })
   }
 }
- 
+
 const s = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
@@ -101,9 +103,9 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   dimensionStyle: {
-    justifyContent: "center",
-    alignItems: "center",
-    flexGrow: 1
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexGrow: 1,
   },
   overlay: {
     alignItems: 'flex-start',
