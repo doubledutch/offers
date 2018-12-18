@@ -17,7 +17,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { translate as t, useStrings } from '@doubledutch/admin-client'
+import { translate as t } from '@doubledutch/admin-client'
 import reordericon from './icons/reordericon.png'
 
 // a little function to help us with reordering the result
@@ -54,7 +54,7 @@ class SortableTable extends Component {
   }
 
   renderCell = (item, i) => (
-    <Draggable draggableId={item.title + i} index={i}>
+    <Draggable key={i} draggableId={item.title + i} index={i}>
       {(provided, snapshot) => {
         const style = {
           userSelect: 'none',
@@ -121,9 +121,7 @@ class SortableTable extends Component {
                   style={getListStyle(snapshot.isDraggingOver)}
                   {...provided.droppableProps}
                 >
-                  {this.props.items.map((item, i) => (
-                    <div>{this.renderCell(item, i)}</div>
-                  ))}
+                  {this.props.items.map((item, i) => this.renderCell(item, i))}
                   {provided.placeholder}
                 </div>
               )}

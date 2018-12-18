@@ -15,7 +15,7 @@
  */
 
 import React, { Component } from 'react'
-import { translate as t, useStrings } from '@doubledutch/admin-client'
+import { translate as t } from '@doubledutch/admin-client'
 import './App.css'
 
 export default class List extends Component {

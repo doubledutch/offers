@@ -8186,7 +8186,7 @@ react-beautiful-dnd@5.0.0:
     redux-thunk "^2.2.0"
     reselect "^3.0.1"
 
-react-csv@^1.0.14:
+react-csv@^1.0.19:
   version "1.0.19"
   resolved "https://registry.yarnpkg.com/react-csv/-/react-csv-1.0.19.tgz#3230dba7877cabaae454425c43e7e2ad90990482"
   integrity sha512-97TiBtFW0jctu5dmOsPK9BJaWtwF79vaamF3Ld8Iza1lk9s0lMi47FSfMzX9/tWcNhOmmxrXXy1nJLXPEGqh5g==
