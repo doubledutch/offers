@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import { translate as t, useStrings } from '@doubledutch/admin-client'
+import { translate as t } from '@doubledutch/admin-client'
 import Modal from 'react-modal'
 
 export default class FormView extends Component {
