@@ -102,8 +102,7 @@ class App extends PureComponent {
             const obj = data.val().click[i]
             obj.key = i
             obj.clickDate = new Date(obj.clickUTC).toLocaleDateString()
-            if (this.state.clicks.find(click => click.key === i)) {
-            } else {
+            if (!this.state.clicks.find(click => click.key === i)) {
               newClicks.push(obj)
             }
           }
@@ -166,7 +165,7 @@ class App extends PureComponent {
               {t('export')}
             </button>
             {this.state.exporting ? (
-              <CSVDownload data={this.state.exportList} target="_blank" />
+              <CSVDownload data={this.state.exportList} filename="offers_attendees.csv" />
             ) : null}
           </div>
         </div>
