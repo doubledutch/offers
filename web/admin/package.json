@@ -10,7 +10,7 @@
     "@doubledutch/react-components": "^0.0.11",
     "react": "^16.6.3",
     "react-beautiful-dnd": "5.0.0",
-    "react-csv": "^1.0.14",
+    "react-csv": "^1.0.19",
     "react-dom": "^16.6.3",
     "react-modal": "^3.4.5",
     "react-scripts": "^2.1.1"
