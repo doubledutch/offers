@@ -32,7 +32,7 @@ export default class Offers extends Component {
   }
 
   componentDidUpdate(nextProps) {
-    if (nextProps !== this.props) {
+    if (nextProps.image !== this.props.image) {
       Image.getSize(nextProps.image, (width, height) => {
         const aspectRatio = width / height
         this.setState({ aspectRatio, renderConfirm: false })
