@@ -20,7 +20,6 @@ import { translate as t } from '@doubledutch/rn-client'
 
 export default class Offers extends Component {
   state = {
-    renderText: false,
     renderConfirm: false,
     aspectRatio: 1,
   }
@@ -30,6 +29,15 @@ export default class Offers extends Component {
       const aspectRatio = width / height
       this.setState({ aspectRatio })
     })
+  }
+
+  componentDidUpdate(nextProps) {
+    if (nextProps !== this.props) {
+      Image.getSize(nextProps.image, (width, height) => {
+        const aspectRatio = width / height
+        this.setState({ aspectRatio, renderConfirm: false })
+      })
+    }
   }
 
   render() {
