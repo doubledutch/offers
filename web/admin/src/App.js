@@ -225,7 +225,12 @@ class App extends PureComponent {
   }
 
   handleEdit = index => {
-    this.setState({ newCell: this.state.cells[index], edit: true, index, showModal: true })
+    this.setState({
+      newCell: Object.assign({}, this.state.cells[index]),
+      edit: true,
+      index,
+      showModal: true,
+    })
   }
 
   showModal = () => {
