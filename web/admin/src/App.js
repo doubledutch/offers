@@ -174,9 +174,6 @@ class App extends PureComponent {
   }
 
   prepareCsv = clicks => {
-    if (this.state.exporting) {
-      return
-    }
     const newList = []
     const attendeeClickPromises = clicks.map(click =>
       client
