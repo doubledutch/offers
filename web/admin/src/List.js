@@ -32,7 +32,12 @@ export default class List extends Component {
           </span>
         </li>
       ))
-      return <ul className="list">{listItems}</ul>
+      return (
+        <ul className="list">
+          {listItems}
+          {this.props.listData.length === 0 && <p className="helpText">No Clicks Found</p>}
+        </ul>
+      )
     }
   }
 

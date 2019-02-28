@@ -46,6 +46,10 @@ h2 {
   color: #4A4A4A;
 }
 
+.borderButton {
+  color: white;
+}
+
 .bigBoxTitle{
   font-size: 24px;
   height: 24px;
@@ -225,6 +229,14 @@ h2 {
   margin: 15px 20px 15px 0px;
   float: right;
   border: none;
+}
+
+.helpText {
+  flex: 1;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  margin-top: 115px;
 }
 
 .outerContainer h2 {
