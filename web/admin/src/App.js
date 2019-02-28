@@ -197,7 +197,7 @@ class App extends PureComponent {
         newList.push(newItem)
       })
       this.setState({ exporting: true, exportList: newList })
-      setTimeout(() => this.setState({ exporting: false, newList: [] }), 3000)
+      setTimeout(() => this.setState({ exporting: false, exportList: [] }), 3000)
     })
   }
 
@@ -207,8 +207,8 @@ class App extends PureComponent {
       const title = `${content.firstName} ${content.lastName}`
       if (title && content.offer) {
         if (
-          title.toLowerCase().indexOf(search.trim()) !== -1 ||
-          content.offer.toLowerCase().indexOf(search.trim()) !== -1
+          title.toLowerCase().indexOf(search.toLowerCase().trim()) !== -1 ||
+          content.offer.toLowerCase().indexOf(search.toLowerCase().trim()) !== -1
         ) {
           filteredClicks.push(content)
         }

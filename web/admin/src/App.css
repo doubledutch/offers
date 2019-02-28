@@ -231,6 +231,14 @@ h2 {
   border: none;
 }
 
+.helpText {
+  flex: 1;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  margin-top: 115px;
+}
+
 .outerContainer h2 {
   margin: 0px 20px;
   font-size: 18px;
