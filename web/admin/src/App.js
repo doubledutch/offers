@@ -282,7 +282,7 @@ class App extends PureComponent {
 
 export default provideFirebaseConnectorToReactComponent(
   client,
-  'Offers',
+  'Offers2',
   (props, fbc) => <App {...props} fbc={fbc} />,
   PureComponent,
 )
