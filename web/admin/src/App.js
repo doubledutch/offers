@@ -18,7 +18,7 @@ import React, { PureComponent } from 'react'
 import './App.css'
 import client, { translate as t, useStrings } from '@doubledutch/admin-client'
 import { provideFirebaseConnectorToReactComponent } from '@doubledutch/firebase-connector'
-import { CSVDownload } from 'react-csv'
+import { CSVDownload } from '@doubledutch/react-csv'
 import List from './List'
 import SortableTable from './SortableTable'
 import FormView from './FormView'
@@ -174,9 +174,6 @@ class App extends PureComponent {
   }
 
   prepareCsv = clicks => {
-    if (this.state.exporting) {
-      return
-    }
     const newList = []
     const attendeeClickPromises = clicks.map(click =>
       client
@@ -200,7 +197,7 @@ class App extends PureComponent {
         newList.push(newItem)
       })
       this.setState({ exporting: true, exportList: newList })
-      setTimeout(() => this.setState({ exporting: false, newList: [] }), 3000)
+      setTimeout(() => this.setState({ exporting: false, exportList: [] }), 3000)
     })
   }
 
@@ -210,8 +207,8 @@ class App extends PureComponent {
       const title = `${content.firstName} ${content.lastName}`
       if (title && content.offer) {
         if (
-          title.toLowerCase().indexOf(search.trim()) !== -1 ||
-          content.offer.toLowerCase().indexOf(search.trim()) !== -1
+          title.toLowerCase().indexOf(search.toLowerCase().trim()) !== -1 ||
+          content.offer.toLowerCase().indexOf(search.toLowerCase().trim()) !== -1
         ) {
           filteredClicks.push(content)
         }
@@ -225,7 +222,12 @@ class App extends PureComponent {
   }
 
   handleEdit = index => {
-    this.setState({ newCell: this.state.cells[index], edit: true, index, showModal: true })
+    this.setState({
+      newCell: Object.assign({}, this.state.cells[index]),
+      edit: true,
+      index,
+      showModal: true,
+    })
   }
 
   showModal = () => {
