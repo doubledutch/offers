@@ -15,7 +15,7 @@
  */
 
 import React, { Component } from 'react'
-import { translate as t, useStrings } from '@doubledutch/admin-client'
+import { translate as t } from '@doubledutch/admin-client'
 import './App.css'
 
 export default class List extends Component {
@@ -32,7 +32,12 @@ export default class List extends Component {
           </span>
         </li>
       ))
-      return <ul className="list">{listItems}</ul>
+      return (
+        <ul className="list">
+          {listItems}
+          {this.props.listData.length === 0 && <p className="helpText">No Clicks Found</p>}
+        </ul>
+      )
     }
   }
 
