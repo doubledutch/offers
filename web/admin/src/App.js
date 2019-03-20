@@ -131,7 +131,7 @@ class App extends PureComponent {
           <div className="headerBox">
             <h1 className="headerMargin">{t('offers')}</h1>
             <button
-              className="borderButton"
+              className="dd-bordered"
               onClick={this.showModal}
               disabled={this.state.showModal}
             >
