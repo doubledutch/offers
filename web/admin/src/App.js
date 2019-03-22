@@ -161,7 +161,7 @@ class App extends PureComponent {
           <List listData={sortedClicks} cells={this.state.cells} />
           <div className="headerBox">
             <div style={{ flex: 1 }} />
-            <button className="borderButton" onClick={() => this.prepareCsv(sortedClicks)}>
+            <button className="dd-bordered" onClick={() => this.prepareCsv(sortedClicks)}>
               {t('export')}
             </button>
             {this.state.exporting ? (
