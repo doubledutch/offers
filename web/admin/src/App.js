@@ -145,6 +145,7 @@ class App extends PureComponent {
             handleEdit={this.handleEdit}
             showFormBool={this.state.showFormBool}
             newCell={this.state.newCell}
+            disableButton={this.state.showModal}
           />
         </div>
         <div className="containerSmall">
