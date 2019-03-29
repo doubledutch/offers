@@ -85,6 +85,7 @@ class SortableTable extends Component {
                   name={i}
                   value="true"
                   onClick={() => this.props.handleEdit(i)}
+                  disabled={this.props.disableButton}
                 >
                   {t('edit')}
                 </button>
@@ -93,6 +94,7 @@ class SortableTable extends Component {
                   name={i}
                   value="true"
                   onClick={() => this.props.handleDelete(i)}
+                  disabled={this.props.disableButton}
                 >
                   {t('remove')}
                 </button>
