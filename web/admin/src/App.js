@@ -254,6 +254,15 @@ class App extends PureComponent {
     publishCell.title = publishCell.title.trim()
     publishCell.des = publishCell.des.trim()
     publishCell.image = publishCell.image.trim()
+    if (!publishCell.key) {
+      publishCell.key =
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15)
+    }
     cells[this.state.index] = publishCell
     this.setState({ cells, newCell: blankCell, showModal: false, edit: false })
     this.props.fbc.database.public.adminRef('offers').set({ cells })
@@ -266,6 +275,13 @@ class App extends PureComponent {
     publishCell.title = publishCell.title.trim()
     publishCell.des = publishCell.des.trim()
     publishCell.image = publishCell.image.trim()
+    publishCell.key =
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15)
     cells.push(publishCell)
     this.props.fbc.database.public.adminRef('offers').set({ cells })
     this.setState({ cells, newCell: blankCell, showModal: false })

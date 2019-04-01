@@ -80,6 +80,16 @@ class SortableTable extends Component {
                 {item && <p className="cellTitle">{item.title}</p>}
                 {item && <p className="cellDes">{item.des}</p>}
                 <div style={{ flex: 1 }} />
+                <input
+                  className="ddLink"
+                  id={item.order}
+                  type="text"
+                  value={
+                    item.key
+                      ? `dd://extensions/Offers?offersId=${item.key}`
+                      : `Please update cell to generate unique Id`
+                  }
+                />
                 <button
                   className="borderlessButton"
                   name={i}
