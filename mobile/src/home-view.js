@@ -51,8 +51,13 @@ class HomeView extends PureComponent {
   }
 
   render() {
-    const { suggestedTitle } = this.props
+    const { suggestedTitle, offerId } = this.props
     const { currentUser, primaryColor } = this.state
+    let { componentConfigs } = this.state
+    if (offerId){
+      const uniqueOffer = componentConfigs.find(item => offerId === item.key)
+      if (uniqueOffer) componentConfigs = [uniqueOffer]
+    }
     if (!currentUser || !primaryColor) return null
     return (
       <View style={{ flex: 1 }}>
@@ -67,7 +72,7 @@ class HomeView extends PureComponent {
           }}
         >
           {this.state.componentConfigs.length ? (
-            <View>{this.state.componentConfigs.map(this.getComponent)}</View>
+            <View>{componentConfigs.map(this.getComponent)}</View>
           ) : (
             <View style={s.helpTextContainer}>
               <Text style={s.helpText} />

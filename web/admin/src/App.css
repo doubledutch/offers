@@ -50,6 +50,16 @@ h2 {
   color: white;
 }
 
+.ddLink {
+  border: none;
+  display: flex;
+  flex: 1;
+  font-size: 12px;
+  color: #ADADAD;
+  margin: 0px;
+  align-items: center;
+}
+
 .bigBoxTitle{
   font-size: 24px;
   height: 24px;
