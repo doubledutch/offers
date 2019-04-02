@@ -254,15 +254,8 @@ class App extends PureComponent {
     publishCell.title = publishCell.title.trim()
     publishCell.des = publishCell.des.trim()
     publishCell.image = publishCell.image.trim()
-    if (!publishCell.key) {
-      publishCell.key =
-        Math.random()
-          .toString(36)
-          .substring(2, 15) +
-        Math.random()
-          .toString(36)
-          .substring(2, 15)
-    }
+    if (!publishCell.key) publishCell.key = getRandomKey()
+
     cells[this.state.index] = publishCell
     this.setState({ cells, newCell: blankCell, showModal: false, edit: false })
     this.props.fbc.database.public.adminRef('offers').set({ cells })
@@ -275,13 +268,8 @@ class App extends PureComponent {
     publishCell.title = publishCell.title.trim()
     publishCell.des = publishCell.des.trim()
     publishCell.image = publishCell.image.trim()
-    publishCell.key =
-      Math.random()
-        .toString(36)
-        .substring(2, 15) +
-      Math.random()
-        .toString(36)
-        .substring(2, 15)
+    publishCell.key = getRandomKey()
+
     cells.push(publishCell)
     this.props.fbc.database.public.adminRef('offers').set({ cells })
     this.setState({ cells, newCell: blankCell, showModal: false })
@@ -303,6 +291,17 @@ export default provideFirebaseConnectorToReactComponent(
   (props, fbc) => <App {...props} fbc={fbc} />,
   PureComponent,
 )
+
+function getRandomKey() {
+  return (
+    Math.random()
+      .toString(36)
+      .substring(2, 15) +
+    Math.random()
+      .toString(36)
+      .substring(2, 15)
+  )
+}
 
 function sortUsers(a, b) {
   const dateA = new Date(a.clickUTC).getTime()
