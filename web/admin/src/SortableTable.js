@@ -86,7 +86,7 @@ class SortableTable extends Component {
                   type="text"
                   value={
                     item.key
-                      ? `dd://extensions/Offers?offersId=${item.key}`
+                      ? `dd://extensions/Offers?offerId=${item.key}`
                       : `Please update cell to generate unique Id`
                   }
                 />
