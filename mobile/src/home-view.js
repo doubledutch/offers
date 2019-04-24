@@ -51,11 +51,11 @@ class HomeView extends PureComponent {
   }
 
   render() {
-    const { suggestedTitle, offersId } = this.props
+    const { suggestedTitle, offerId } = this.props
     const { currentUser, primaryColor } = this.state
     let { componentConfigs } = this.state
-    if (offersId){
-      const uniqueOffer = componentConfigs.find(item => offersId === item.key)
+    if (offerId){
+      const uniqueOffer = componentConfigs.find(item => offerId === item.key)
       if (uniqueOffer) componentConfigs = [uniqueOffer]
     }
     if (!currentUser || !primaryColor) return null
