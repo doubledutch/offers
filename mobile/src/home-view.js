@@ -28,6 +28,7 @@ class HomeView extends PureComponent {
     super(props)
     this.state = {
       componentConfigs: [],
+      showDisclaimer: false
     }
     this.signin = props.fbc.signin().then(user => (this.user = user))
 
@@ -40,6 +41,12 @@ class HomeView extends PureComponent {
       this.setState({ currentUser })
       this.signin.then(() => {
         const cellsRef = this.props.fbc.database.public.adminRef('offers')
+        const disclaimerRef = this.props.fbc.database.public.adminRef()
+
+        disclaimerRef.on('value', data => {
+          if (data.val()) this.setState({ showDisclaimer: data.val().showDisclaimer || false })
+        })
+
         cellsRef.on('child_added', data => {
           this.setState({ componentConfigs: [...data.val()] })
         })
@@ -52,7 +59,7 @@ class HomeView extends PureComponent {
 
   render() {
     const { suggestedTitle, offerId } = this.props
-    const { currentUser, primaryColor } = this.state
+    const { currentUser, primaryColor, showDisclaimer } = this.state
     let { componentConfigs } = this.state
     if (offerId){
       const uniqueOffer = componentConfigs.find(item => offerId === item.key)
@@ -62,6 +69,7 @@ class HomeView extends PureComponent {
     return (
       <View style={{ flex: 1 }}>
         <TitleBar title={suggestedTitle || t('offers')} client={client} signin={this.signin} />
+        {showDisclaimer && <View style={{padding: 10, borderBottomColor: "gray", borderBottomWidth: 1}}><Text>*Please note that by selecting "I'm Interested" you agree to share your name and email with the associated company</Text></View> }
         <ScrollView
           style={s.container}
           ref={scrollView => {
