@@ -20,6 +20,7 @@ import client, { translate as t, useStrings } from '@doubledutch/admin-client'
 import { provideFirebaseConnectorToReactComponent } from '@doubledutch/firebase-connector'
 import { CSVDownload } from '@doubledutch/react-csv'
 import List from './List'
+import SettingsContainer from './SettingsContainer'
 import SortableTable from './SortableTable'
 import FormView from './FormView'
 import i18n from './i18n'
@@ -52,6 +53,7 @@ class App extends PureComponent {
       search: '',
       exportList: [],
       exporting: false,
+      showDisclaimer: false,
     }
     this.signin = props.fbc
       .signinAdmin()
@@ -77,6 +79,11 @@ class App extends PureComponent {
       .then(() => {
         const adminableRef = fbc.database.private.adminableUsersRef()
         const cellsRef = fbc.database.public.adminRef('offers')
+        const disclaimerRef = fbc.database.public.adminRef()
+        disclaimerRef.on('value', data => {
+          if (data.val()) this.setState({ showDisclaimer: data.val().showDisclaimer || false })
+        })
+
         cellsRef.on('child_added', data => {
           this.setState({ cells: [...data.val()] })
         })
@@ -169,9 +176,17 @@ class App extends PureComponent {
               <CSVDownload data={this.state.exportList} filename="offers_attendees.csv" />
             ) : null}
           </div>
+          <SettingsContainer
+            showDisclaimer={this.state.showDisclaimer}
+            updateShowDisclaimer={this.updateShowDisclaimer}
+          />
         </div>
       </div>
     )
+  }
+
+  updateShowDisclaimer = bool => {
+    this.props.fbc.database.public.adminRef('showDisclaimer').set(bool)
   }
 
   prepareCsv = clicks => {

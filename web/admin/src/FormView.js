@@ -34,7 +34,7 @@ export default class FormView extends Component {
           <label className="boxTitle">
             {t('offer_name')}
             <input
-              className="box"
+              className="dd-bordered input-margin"
               name="title"
               type="text"
               placeholder={t('name')}
@@ -50,7 +50,7 @@ export default class FormView extends Component {
           <label className="boxTitle">
             {t('image_url')}
             <input
-              className="box"
+              className="dd-bordered"
               name="image"
               type="text"
               required
@@ -67,7 +67,7 @@ export default class FormView extends Component {
           <label className="boxTitleWide">
             {t('description')}
             <textarea
-              className="wideBox"
+              className="dd-bordered wide-space"
               name="des"
               type="text"
               required
@@ -123,8 +123,8 @@ export default class FormView extends Component {
       <Modal
         ariaHideApp={false}
         isOpen={this.props.showModal}
-        onAfterOpen={this.props.afterOpenModal}
         onRequestClose={this.props.showModalFunction}
+        shouldCloseOnOverlayClick={false}
         contentLabel="Modal"
         className="Modal"
         overlayClassName="Overlay"
