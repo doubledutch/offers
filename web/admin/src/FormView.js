@@ -123,8 +123,8 @@ export default class FormView extends Component {
       <Modal
         ariaHideApp={false}
         isOpen={this.props.showModal}
-        onAfterOpen={this.props.afterOpenModal}
         onRequestClose={this.props.showModalFunction}
+        shouldCloseOnOverlayClick={false}
         contentLabel="Modal"
         className="Modal"
         overlayClassName="Overlay"
