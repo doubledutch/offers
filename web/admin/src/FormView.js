@@ -83,7 +83,7 @@ export default class FormView extends Component {
         </div>
       </div>
       <div className="modalBottom">
-        <button className="formButton" onClick={this.cancelSave}>
+        <button className="formButtonWhite" onClick={this.cancelSave}>
           {t('cancel')}
         </button>
         {this.state.isError ? (
@@ -93,6 +93,7 @@ export default class FormView extends Component {
             type="submit"
             value={this.props.edit ? t('save') : t('add')}
             className="formButton"
+            maxLength={400}
           />
         )}
       </div>
