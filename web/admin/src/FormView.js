@@ -71,7 +71,7 @@ export default class FormView extends Component {
               name="des"
               type="text"
               required
-              maxLength={1000}
+              maxLength={400}
               placeholder={t('example')}
               value={this.props.newCell.des}
               onChange={this.handleInputChange}
@@ -93,7 +93,6 @@ export default class FormView extends Component {
             type="submit"
             value={this.props.edit ? t('save') : t('add')}
             className="formButton"
-            maxLength={400}
           />
         )}
       </div>
