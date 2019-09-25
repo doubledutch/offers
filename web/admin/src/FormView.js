@@ -50,7 +50,7 @@ export default class FormView extends Component {
           <label className="boxTitle">
             {t('image_url')}
             <input
-              className="dd-bordered"
+              className="dd-bordered  input"
               name="image"
               type="text"
               required

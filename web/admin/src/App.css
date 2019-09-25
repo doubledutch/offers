@@ -266,6 +266,11 @@ h2 {
 
 .input-margin {
   margin-right: 20px;
+  font: 300 1em -apple-system, BlinkMacSystemFont, 'Fira Sans', 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+.input {
+  font: 300 1em -apple-system, BlinkMacSystemFont, 'Fira Sans', 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
 
 .wide-space {
