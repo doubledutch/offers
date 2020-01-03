@@ -50,7 +50,7 @@ export default class FormView extends Component {
           <label className="boxTitle">
             {t('image_url')}
             <input
-              className="dd-bordered"
+              className="dd-bordered  input"
               name="image"
               type="text"
               required
@@ -71,7 +71,7 @@ export default class FormView extends Component {
               name="des"
               type="text"
               required
-              maxLength={1000}
+              maxLength={400}
               placeholder={t('example')}
               value={this.props.newCell.des}
               onChange={this.handleInputChange}
@@ -83,7 +83,7 @@ export default class FormView extends Component {
         </div>
       </div>
       <div className="modalBottom">
-        <button className="formButton" onClick={this.cancelSave}>
+        <button className="formButtonWhite" onClick={this.cancelSave}>
           {t('cancel')}
         </button>
         {this.state.isError ? (
